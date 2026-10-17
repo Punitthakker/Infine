@@ -47,7 +47,7 @@ Placeholders to confirm, all in `assets/js/data.js` unless noted:
 2. Claims shown on product pages: natural diamonds, F-G / VS, certificate included, solid 18k gold, 14-day returns, free same-day delivery in Dubai before 2pm, lifetime cleaning, free resizing within 30 days.
 3. Promo codes `ADORED10` and `STACK10` (10% each) are demo codes.
 4. Photography: rings are cropped from the CAD sheets in *Rings_5.pdf*; bands, hoops and bracelets come from the supplier catalogues; necklaces and model shots from the earlier catalogue (some carry a faint supplier watermark). Get clean originals and written permission to use them under the infine brand.
-5. The hero clip is the first 7.5 seconds of the *First Impressions* video; the film is the *Adored Edit*.
+5. The hero loop is built from five AI-generated stills (Figma AI, file "infine.store hero stills"): a fictional Indian model against an unbranded Dubai Marina skyline, no logos or landmarks. The film is the *Adored Edit*.
 6. WhatsApp number and private-viewing details in `BRAND`.
 
 ## Connecting the backend
