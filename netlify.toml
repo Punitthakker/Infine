@@ -1,7 +1,26 @@
 [build]
   publish = "."
 
+# Images and video never change name in place, so phones can keep them.
 [[headers]]
-  for = "/assets/*"
+  for = "/assets/img/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=2592000"
+[[headers]]
+  for = "/assets/video/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# Styles, scripts and the page itself are always re-checked, so updates show straight away.
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

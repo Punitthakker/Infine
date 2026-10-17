@@ -1,6 +1,6 @@
 // Screens for infine.store. Each returns an HTML string; app.js wires behaviour.
-import { PRODUCTS, CATEGORIES, BRAND, bySlug, inCat, catOf } from './data.js';
-import * as S from './store.js';
+import { PRODUCTS, CATEGORIES, BRAND, bySlug, inCat, catOf } from './data.js?v=202610172051';
+import * as S from './store.js?v=202610172051';
 
 export const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const aed = n => 'AED ' + Math.round(n).toLocaleString('en-US');
@@ -88,7 +88,7 @@ export function home() {
   return `
   <section class="hero">
     <div class="hero__media">
-      <video autoplay muted loop playsinline preload="auto" poster="assets/video/hero-poster.jpg" aria-hidden="true"><source src="assets/video/hero.mp4" type="video/mp4"></video>
+      <video autoplay muted loop playsinline preload="auto" poster="assets/video/hero-poster.jpg?v=202610172051" aria-hidden="true"><source src="assets/video/hero.mp4?v=202610172051" type="video/mp4"></video>
     </div>
     <div class="wrap hero__in">
       <p class="kicker">${BRAND.edit} · ${BRAND.city}</p>

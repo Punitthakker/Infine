@@ -1,7 +1,7 @@
 // infine.store: router, chrome, bag drawer, search, checkout, little moments of delight.
-import { BRAND, bySlug, PROMOS } from './data.js';
-import * as V from './views.js';
-import * as S from './store.js';
+import { BRAND, bySlug, PROMOS } from './data.js?v=202610172051';
+import * as V from './views.js?v=202610172051';
+import * as S from './store.js?v=202610172051';
 
 const $ = (s, r = document) => r.querySelector(s);
 const app = $('#app');
