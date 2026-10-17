@@ -1,0 +1,33 @@
+# infine.store on Apache (GoDaddy cPanel) (Apache / cPanel)
+Options -Indexes
+DirectoryIndex index.html
+
+# Always use https
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
+
+# Correct types for modules, webp and the app manifest
+AddType text/javascript .js
+AddType image/webp .webp
+AddType application/manifest+json .webmanifest
+AddType image/svg+xml .svg
+AddType video/mp4 .mp4
+
+# Cache images, fonts, css and js for a year; always re-check the page itself
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType text/javascript "access plus 1 week"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/json image/svg+xml application/manifest+json
+</IfModule>
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>infine. Made to be adored</title>
+<meta name="description" content="infine. Real diamonds in solid 18k gold. Rings, stacking bands, huggies and hoops, tennis bracelets and necklaces. Same-day delivery in Dubai.">
+<meta name="theme-color" content="#0D0A0C">
+<meta property="og:title" content="infine. Made to be adored">
+<meta property="og:description" content="Real diamonds in solid 18k gold. Same-day delivery in Dubai.">
+<meta property="og:image" content="assets/img/model-tennis-tall.webp">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Italiana&display=swap">
+<link rel="stylesheet" href="assets/css/store.css">
+</head>
+<body>
+<div class="veil" id="veil" aria-hidden="true"><p class="veil__mark">infine.</p><p class="veil__line">made to be adored</p></div>
+<a class="sr" href="#app">Skip to content</a>
+<div id="top"></div>
+<main id="app" tabindex="-1"></main>
+<nav class="bar" id="bar" aria-label="Shortcuts"></nav>
+
+<div class="menu" id="menu" role="dialog" aria-label="Menu">
+  <div class="menu__top"><span class="logo" style="justify-self:start">infine.</span><button class="ib" data-act="close-menu" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <nav>
+    <a href="#/shop/rings">Rings <small>Say yes to yourself</small></a>
+    <a href="#/shop/bands">Stacking bands <small>Stack your stories</small></a>
+    <a href="#/shop/earrings">Huggies & hoops <small>Close to you</small></a>
+    <a href="#/shop/bracelets">Bracelets <small>For the wrist</small></a>
+    <a href="#/shop/necklaces">Necklaces <small>Made to be noticed</small></a>
+    <a href="#/shop/all/under5k">Gifts <small>Under AED 5,000</small></a>
+    <a href="#/story">Our story</a>
+    <a href="#/guide">Care & sizing</a>
+    <a href="#/account">Account</a>
+  </nav>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Your bag" aria-hidden="true">
+  <div class="drawer__head"><p class="h3">Your <span class="it">bag</span></p><button class="ib" data-act="close-bag" aria-label="Close bag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="drawer__body" id="bag-body"></div>
+  <div class="drawer__foot" id="bag-foot"></div>
+</aside>
+
+<div class="search" id="search" role="dialog" aria-label="Search">
+  <div class="wrap">
+    <div class="search__bar"><label class="sr" for="q">Search infine.</label><input class="input" id="q" placeholder="Search rings, hoops, tennis..." autocomplete="off"><button class="btn btn--line btn--sm" data-act="close-search">Close</button></div>
+    <div id="results" style="display:grid;gap:22px;padding-block:28px 90px"></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
