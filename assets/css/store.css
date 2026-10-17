@@ -423,3 +423,23 @@ html, body { overflow-x: clip; }
   .edsh__shop b { font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .edsh__shop img { width: 40px; height: 40px; flex: none; }
 }
+
+/* ---------- Phones: picture on top, words below. Nothing printed over faces or jewellery ---------- */
+@media (max-width: 999px) {
+  .hero { display: block; min-height: 0; }
+  .hero__media { position: relative; inset: auto; z-index: 0; height: 50svh; min-height: 360px; max-height: 560px; }
+  .hero__media video, .hero__media img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }
+  .hero__media::after { background: linear-gradient(180deg, rgba(13,10,12,.25) 0%, rgba(13,10,12,0) 18%, rgba(13,10,12,0) 80%, var(--noir) 100%); }
+  .hero__in { padding-block: 14px 32px; gap: 14px; }
+  .hero .lede { font-size: 16px; line-height: 1.55; }
+  .hero .h-hero { font-size: clamp(46px, 13vw, 64px); }
+
+  .edsh { display: grid; height: auto; min-height: 0; background: var(--noir); }
+  .edsh__slide { grid-area: 1 / 1; position: relative; inset: auto; display: grid; grid-template-rows: auto 1fr; }
+  .edsh__slide::after { display: none; }
+  .edsh__img { position: relative; inset: auto; display: block; height: 60svh; min-height: 400px; max-height: 600px; object-position: 50% 30%; }
+  .edsh__slide > .edsh__img { -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent); mask-image: linear-gradient(180deg, #000 82%, transparent); }
+  .edsh__cap { position: relative; inset: auto; bottom: auto; padding: 18px var(--gl) 80px; gap: 10px; align-content: start; }
+  .edsh__cap .h1 { font-size: clamp(38px, 11vw, 52px); }
+  .edsh__ui { bottom: 24px; padding-inline: var(--gl) var(--gr); }
+}
