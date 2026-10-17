@@ -142,6 +142,8 @@ h2, h3, h4, p { margin: 0; }
   .hero__in > .hero__head { grid-column: 1; }
   .hero__side { grid-column: 2; display: grid; gap: 18px; justify-items: start; }
   .hero__orbit { right: 2vw; bottom: auto; top: 30px; width: 420px; }
+  .hero .d1 { font-size: min(10.5vw, 160px); }
+  .dropcard__art .pixdia { width: min(100%, 320px); }
 }
 
 /* photo strip under the hero */
