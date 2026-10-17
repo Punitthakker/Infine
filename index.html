@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>infine. drop 01</title>
+<meta name="description" content="infine. real diamonds in solid 18k gold, made to stack. tennis bracelets, tennis necklaces, ear party and black diamonds in limited drops out of dubai.">
+<meta name="theme-color" content="#111111">
+<meta property="og:title" content="infine. stack it. mix it. make it yours.">
+<meta property="og:description" content="drop 01: main character energy. real diamonds, limited drops, dubai.">
+<meta property="og:image" content="assets/brand/poster-stack-it.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700;800&family=Montserrat:wght@500;600;700&family=Space+Mono:wght@400;700&family=Silkscreen:wght@400;700&display=swap">
+<link rel="stylesheet" href="assets/css/infine.css">
+
+</head>
+<body>
+<a class="sr" href="#app">skip to content</a>
+<div id="chrome-top"></div>
+<main id="app" tabindex="-1"></main>
+<nav class="tabs" id="chrome-tabs" aria-label="app"></nav>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="bag" aria-hidden="true">
+  <div class="drawer__head"><h2 class="d4">your bag</h2><button class="icon-btn" data-act="close-bag" aria-label="close bag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="drawer__body" id="drawer-body"></div>
+  <div class="drawer__foot" id="drawer-foot"></div>
+</aside>
+
+<div class="search" id="search" role="dialog" aria-label="search">
+  <div class="wrap">
+    <div class="search__bar"><label class="sr" for="q">search infine</label><input class="input" id="q" placeholder="search tennis, black, ear party" autocomplete="off"><button class="btn btn--line btn--sm" data-act="close-search">close</button></div>
+    <div class="results" id="results"></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
