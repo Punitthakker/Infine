@@ -40,13 +40,45 @@ export function card(p, eager = false) {
     </a>
   </article>`;
 }
+/* The Dubai edit: editorial slideshow (images in assets/img/dxb-*.webp) */
+const SLIDES = [
+  { img: 'dxb-rooftop', place: 'Dubai Marina, blue hour', t: ['After dark', 'in Dubai.'], line: 'The city lights up. So do you.', shop: ['riviera', 'halo-huggies'] },
+  { img: 'dxb-hand', place: 'The balcony', t: ['Yours,', 'not his.'], line: 'An oval that catches every light on the water.', shop: ['oval-whisper', 'classic-tennis'] },
+  { img: 'dxb-promenade', place: 'The promenade, golden hour', t: ['Golden', 'hour.'], line: 'Hoops that move when you do.', shop: ['baguette-hoops', 'bezel-tennis'] },
+  { img: 'dxb-riviera', place: 'Rooftop, after dinner', t: ['All eyes', 'on you.'], line: 'A riviera of diamonds, graduated to frame the collarbone.', shop: ['riviera', 'fringe-riviera'] },
+  { img: 'dxb-emerald', place: 'Candlelit, by the water', t: ['Stay a little', 'longer.'], line: 'Huggies for the nights you will talk about next year.', shop: ['halo-huggies', 'trio-huggies'] },
+];
+function slideshow() {
+  const n = SLIDES.length, pad = i => String(i + 1).padStart(2, '0');
+  const slides = SLIDES.map((sl, i) => {
+    const prods = sl.shop.map(bySlug).filter(Boolean);
+    return `<figure class="edsh__slide${i ? '' : ' is-on'}" data-slide="${i}" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${n}" ${i ? 'aria-hidden="true"' : ''}>
+      <div class="edsh__bg" style="background-image:url(${IMG(sl.img)})"></div>
+      <img class="edsh__img" src="${IMG(sl.img)}" alt="${esc(sl.place)}, wearing infine. diamonds" ${i ? 'loading="lazy"' : ''} decoding="async">
+      <figcaption class="edsh__cap">
+        <p class="kicker"><span class="edsh__num">${pad(i)} / ${pad(n - 1)}</span> ${esc(sl.place)}</p>
+        <h2 class="h1"><span>${sl.t[0]}</span> <span class="it">${sl.t[1]}</span></h2>
+        <p class="lede">${esc(sl.line)}</p>
+        <div class="edsh__shop">${prods.map(p => `<a href="#/p/${p.slug}" ${i ? 'tabindex="-1"' : ''}><img src="${IMG(p.media[0].img)}" alt="" loading="lazy" class="tone-${p.media[0].tone}"><span><b>${esc(p.name)}</b><small>${aed(p.price)}</small></span></a>`).join('')}</div>
+      </figcaption>
+    </figure>`;
+  }).join('');
+  return `<section class="edsh" data-show aria-roledescription="carousel" aria-label="The Dubai edit" tabindex="-1">
+    ${slides}
+    <div class="edsh__ui">
+      <button class="edsh__arrow" data-act="slide" data-dir="-1" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="edsh__dots">${SLIDES.map((_, i) => `<button data-act="slide" data-to="${i}" aria-label="Show photo ${i + 1}" ${i ? '' : 'aria-current="true"'}><i></i></button>`).join('')}</div>
+      <button class="edsh__arrow" data-act="slide" data-dir="1" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </section>`;
+}
 const cutoff = () => `<p class="cutoff"><span>Order within <b data-cutoff-t>--</b> <span data-cutoff-w>for same-day delivery in Dubai</span></span></p>`;
 
 /* ================= HOME ================= */
 export function home() {
   const rings = inCat('rings'), bands = inCat('bands'), hoops = inCat('earrings'), brc = inCat('bracelets'), neck = inCat('necklaces');
   const moods = [
-    ['necklaces', { img: 'model-fringe-tall', tone: 'photo' }, 'Necklaces'],
+    ['necklaces', { img: 'dxb-riviera', tone: 'photo' }, 'Necklaces'],
     ['rings', { img: 'ring-014', tone: 'dark' }, 'Rings'],
     ['earrings', { img: 'hoop-017', tone: 'light' }, 'Huggies & hoops'],
     ['bands', { img: 'band-1_11', tone: 'light' }, 'Stacking bands'],
@@ -67,6 +99,8 @@ export function home() {
     </div>
   </section>
   <div class="marq" aria-hidden="true"><div class="marq__run">${Array(2).fill(['Rings', 'Stacking bands', 'Huggies & hoops', 'Tennis bracelets', 'Necklaces', 'Made to be adored'].map(w => `<span>${w}</span>`).join('')).join('')}</div></div>
+
+  ${slideshow()}
 
   <section class="sec"><div class="wrap sec__in">
     <div class="sec__head"><div><p class="kicker">Shop by mood</p><h2 class="h2">What are you <span class="it">in the mood for?</span></h2></div></div>
@@ -140,7 +174,7 @@ export function home() {
   </div>
 
   <section class="viewing">
-    <img src="${IMG('model-ruby-tall')}" alt="" loading="lazy">
+    <img src="${IMG('dxb-emerald')}" alt="" loading="lazy">
     <div class="wrap viewing__in">
       <p class="kicker">Private viewing</p>
       <h2 class="h1">Try it on <span class="it">in person.</span></h2>
@@ -316,7 +350,7 @@ export function account() {
 
 /* ================= STORY / GUIDE ================= */
 export function story() {
-  return `<section class="hero" style="min-height:70vh"><div class="hero__media"><img src="${IMG('model-diamond-tall')}" alt=""></div>
+  return `<section class="hero" style="min-height:70vh"><div class="hero__media"><img src="${IMG('dxb-rooftop')}" alt=""></div>
     <div class="wrap hero__in"><p class="kicker">Our story</p><h1 class="h-hero" style="font-size:clamp(56px,12vw,140px)"><span class="ln"><span>For the woman</span></span><span class="ln"><span>who knows.</span></span></h1></div></section>
   <section class="sec"><div class="wrap pair"><div class="prose">
     <p>infine. began with a simple idea: the most beautiful diamonds shouldn't wait for someone else to give them to you.</p>

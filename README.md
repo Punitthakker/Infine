@@ -9,7 +9,7 @@ Static site, no build step: HTML, CSS and ES modules. Deploys anywhere that serv
 
 | Route | Screen |
 | --- | --- |
-| `#/` | Home: video hero with the same-day delivery cut-off, shop by mood, rings, shoppable "Wear it tonight" look, stacking bands, the film (with sound), huggies & hoops, necklaces look, bracelets, gifts under AED 5,000, promises, private viewing, the list |
+| `#/` | Home: video hero with the same-day delivery cut-off, "The Dubai edit" shoppable photo slideshow (auto-plays, swipe, arrows), shop by mood, rings, shoppable "Wear it tonight" look, stacking bands, the film (with sound), huggies & hoops, necklaces look, bracelets, gifts under AED 5,000, promises, private viewing, the list |
 | `#/shop/<category>[/under5k]` | Shop: Rings, Stacking bands, Huggies & hoops, Bracelets, Necklaces, plus an under-AED-5k gift filter and sorting |
 | `#/p/<slug>` | Product: gallery, size or length, scarcity, gift option, Add to bag, Buy it now, delivery cut-off, details, complete-the-look bundle, you may also love |
 | Bag drawer, `#/bag` | Bag with quantities, gift note, totals, pay in 4 |
@@ -47,7 +47,7 @@ Placeholders to confirm, all in `assets/js/data.js` unless noted:
 2. Claims shown on product pages: natural diamonds, F-G / VS, certificate included, solid 18k gold, 14-day returns, free same-day delivery in Dubai before 2pm, lifetime cleaning, free resizing within 30 days.
 3. Promo codes `ADORED10` and `STACK10` (10% each) are demo codes.
 4. Photography: rings are cropped from the CAD sheets in *Rings_5.pdf*; bands, hoops and bracelets come from the supplier catalogues; necklaces and model shots from the earlier catalogue (some carry a faint supplier watermark). Get clean originals and written permission to use them under the infine brand.
-5. The hero loop is built from five AI-generated stills (Figma AI, file "infine.store hero stills"): a fictional Indian model against an unbranded Dubai Marina skyline, no logos or landmarks. The film is the *Adored Edit*.
+5. The hero loop and the Dubai edit slideshow (`assets/img/dxb-*.webp`, edit `SLIDES` in `views.js`) use five AI-generated stills (Figma AI, file "infine.store hero stills"): a fictional Indian model against an unbranded Dubai Marina skyline, no logos or landmarks. The film is the *Adored Edit*.
 6. WhatsApp number and private-viewing details in `BRAND`.
 
 ## Connecting the backend

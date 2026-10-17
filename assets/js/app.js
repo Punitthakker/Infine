@@ -84,6 +84,36 @@ function wire() {
   if (sb && anchor && 'IntersectionObserver' in window) new IntersectionObserver(([e]) => sb.classList.toggle('show', !e.isIntersecting && e.boundingClientRect.top < 0)).observe(anchor);
   if (route.name === 'checkout' && coStep === 3) payToggle();
   const hv = $('.hero video'); if (hv && reduce) hv.pause();
+  slideshow();
+}
+
+/* ---------- The Dubai edit slideshow ---------- */
+let showTimer = 0, showVis = null;
+document.addEventListener('visibilitychange', () => showVis?.());
+function slideshow() {
+  clearTimeout(showTimer);
+  const root = $('[data-show]'); showVis = null; if (!root) return;
+  const slides = [...root.querySelectorAll('[data-slide]')], dots = [...root.querySelectorAll('.edsh__dots button')], MS = 6000;
+  let i = 0, paused = false, seen = false;
+  root.style.setProperty('--edsh-ms', MS + 'ms');
+  const go = (n, user) => {
+    i = (n + slides.length) % slides.length;
+    slides.forEach((s, k) => { const on = k === i; s.classList.toggle('is-on', on); s.setAttribute('aria-hidden', String(!on)); s.querySelectorAll('a').forEach(a => on ? a.removeAttribute('tabindex') : a.setAttribute('tabindex', '-1')); if (on) s.querySelector('.edsh__img').loading = 'eager'; });
+    slides[(i + 1) % slides.length].querySelector('.edsh__img').loading = 'eager';
+    dots.forEach((d, k) => { d.classList.toggle('is-past', k < i); d.toggleAttribute('aria-current', false); if (k === i) { d.setAttribute('aria-current', 'true'); const b = d.querySelector('i'); b.style.animation = 'none'; b.offsetWidth; b.style.animation = ''; } });
+    schedule();
+  };
+  const schedule = () => { clearTimeout(showTimer); if (!paused && seen && !reduce && !document.hidden && document.body.contains(root)) showTimer = setTimeout(() => go(i + 1), MS); };
+  const pause = on => { paused = on; root.classList.toggle('paused', on); if (on) clearTimeout(showTimer); else schedule(); };
+  root._go = go;
+  if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { seen = e.isIntersecting; root.classList.toggle('paused', !seen || paused); seen ? schedule() : clearTimeout(showTimer); }, { threshold: .35 }).observe(root); else { seen = true; schedule(); }
+  root.addEventListener('focusin', e => { if (e.target.matches(':focus-visible')) pause(true); }); root.addEventListener('focusout', e => { if (!root.contains(e.relatedTarget)) pause(false); });
+  let x0 = null, y0 = 0;
+  root.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  root.addEventListener('touchend', e => { if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null; if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) go(i + (dx < 0 ? 1 : -1)); }, { passive: true });
+  root.addEventListener('keydown', e => { if (e.key === 'ArrowRight') go(i + 1); if (e.key === 'ArrowLeft') go(i - 1); });
+  showVis = schedule;
+  go(0);
 }
 function payToggle() { const f = $('[data-cardf]'), v = document.querySelector('input[name="pay"]:checked')?.value; if (f) f.hidden = v !== 'card'; }
 
@@ -144,6 +174,7 @@ document.addEventListener('click', e => {
   if (act === 'q') { $('#q').value = el.dataset.q; $('#results').innerHTML = V.searchResults(el.dataset.q); }
   if (act === 'signout') { S.signOut(); render(); }
   if (act === 'back') { coStep = Math.max(1, coStep - 1); render(); }
+  if (act === 'slide') { const r = el.closest('[data-show]'); if (r?._go) { const cur = [...r.querySelectorAll('[data-slide]')].findIndex(x => x.classList.contains('is-on')); r._go(el.dataset.to != null ? +el.dataset.to : cur + +el.dataset.dir, true); } return; }
   if (act === 'spot') { if (e.target.closest('.spot__card')) return; e.preventDefault(); const open = el.getAttribute('aria-expanded') === 'true'; document.querySelectorAll('.spot').forEach(s => s.setAttribute('aria-expanded', 'false')); el.setAttribute('aria-expanded', String(!open)); }
   if (act === 'film') { const v = $('[data-film]'); el.hidden = true; v.controls = true; v.muted = false; v.play().catch(() => { v.muted = true; v.play(); }); }
 });
