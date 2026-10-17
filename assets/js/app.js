@@ -69,14 +69,14 @@ function render(scrollTop = true) {
   markNav(); tick(); wire();
   if (scrollTop) window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
 }
-window.addEventListener('hashchange', () => render());
+window.addEventListener('hashchange', () => { closeBag(); closeSearch(); render(); });
 
 /* ---------- countdowns ---------- */
 function tick() {
   document.querySelectorAll('[data-until]').forEach(el => {
     let s = Math.max(0, Math.floor((Date.parse(el.dataset.until) - Date.now()) / 1000));
     const d = Math.floor(s / 86400); s -= d * 86400; const h = Math.floor(s / 3600); s -= h * 3600; const m = Math.floor(s / 60); s -= m * 60;
-    const set = (u, v) => { const b = el.querySelector(`[data-u="${u}"]`); const t = String(v).padStart(2, '0'); if (b && b.textContent !== t) b.textContent = t; };
+    const set = (u, v) => { const b = el.querySelector(`[data-u="${u}"]`); const t = String(v).padStart(2, '0'); if (b && b.textContent !== t) { b.textContent = t; b.classList.remove('flip'); void b.offsetWidth; b.classList.add('flip'); } };
     set('d', d); set('h', h); set('m', m); set('s', s);
   });
 }
@@ -103,6 +103,25 @@ function refreshBag() {
   if (route.name === 'bag') { $('[data-bag-body]').innerHTML = V.bagItems(); $('[data-bag-foot]').innerHTML = V.bagFoot(); }
 }
 
+/* ---------- diamond burst (add to bag) ---------- */
+function burst(from) {
+  try { navigator.vibrate?.(18); } catch {}
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const c = document.createElement('canvas'), x = c.getContext('2d'); const dpr = Math.min(2, devicePixelRatio || 1);
+  c.className = 'burst'; c.width = innerWidth * dpr; c.height = innerHeight * dpr; document.body.appendChild(c); x.scale(dpr, dpr);
+  const r = from.getBoundingClientRect(), ox = r.left + r.width / 2, oy = r.top + r.height / 2;
+  const cols = ['#FFFFFF', '#D7FF3A', '#FD4FA6', '#CBB5FE', '#A9D8FF'];
+  const ps = Array.from({ length: 42 }, () => { const a = Math.random() * Math.PI * 2, v = 4 + Math.random() * 9; return { x: ox, y: oy, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 6, s: 6 + Math.random() * 9, r: Math.random() * 6, vr: (Math.random() - .5) * .3, c: cols[Math.floor(Math.random() * cols.length)] }; });
+  let t = 0;
+  (function frame() {
+    x.clearRect(0, 0, innerWidth, innerHeight); t++;
+    ps.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += .42; p.vx *= .985; p.r += p.vr;
+      x.save(); x.translate(p.x, p.y); x.rotate(p.r); x.globalAlpha = Math.max(0, 1 - t / 70); x.fillStyle = p.c;
+      x.beginPath(); x.moveTo(0, -p.s * .55); x.lineTo(p.s * .5, -p.s * .1); x.lineTo(0, p.s * .6); x.lineTo(-p.s * .5, -p.s * .1); x.closePath(); x.fill(); x.restore(); });
+    if (t < 70) requestAnimationFrame(frame); else c.remove();
+  })();
+}
+
 /* ---------- toast ---------- */
 let tt; function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 2400); }
 
@@ -124,7 +143,11 @@ document.addEventListener('click', e => {
     const before = S.bag().find(i => i.key === [p.slug, s.size || p.sizes[0].label, s.metal || p.metals[0], s.length || p.lengths[Math.min(1, p.lengths.length - 1)]].join('|'))?.qty || 0;
     S.addToBag(p.slug, s.size || p.sizes[0].label, s.metal || p.metals[0], s.length || p.lengths[Math.min(1, p.lengths.length - 1)]);
     const after = S.bag().find(i => i.slug === p.slug && i.size === (s.size || p.sizes[0].label) && i.metal === (s.metal || p.metals[0]))?.qty || 0;
-    if (after === before) toast('max 2 per drop piece'); else { toast(`${p.name} added to bag`); openBag(); }
+    if (after === before) toast('max 2 per drop piece'); else { burst(el); toast(`${p.name} added to bag`); setTimeout(openBag, 380); }
+  }
+  if (act === 'add-bundle') {
+    [el.dataset.a, el.dataset.b].forEach(sl => { const p = bySlug(sl), s = (sl === el.dataset.a && pdpSel[sl]) || {}; S.addToBag(sl, s.size || p.sizes[0].label, s.metal || p.metals[0], s.length || p.lengths[Math.min(1, p.lengths.length - 1)]); });
+    burst(el); toast('stack added to bag'); setTimeout(openBag, 380);
   }
   if (act === 'open-bag') openBag();
   if (act === 'close-bag') closeBag();
@@ -191,4 +214,20 @@ document.addEventListener('submit', e => {
 });
 
 S.onChange(() => { chrome(); refreshBag(); });
+
+/* ---------- hero parallax (pointer) ---------- */
+addEventListener('pointermove', e => {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || e.pointerType !== 'mouse') return;
+  const dx = e.clientX / innerWidth - .5, dy = e.clientY / innerHeight - .5;
+  document.querySelectorAll('.hero__orbit').forEach(o => o.style.transform = `translate(${dx * -24}px, ${dy * -18}px)`);
+  document.querySelectorAll('.fan__card').forEach((c, i) => c.style.translate = `${dx * (10 + i * 8)}px ${dy * (8 + i * 6)}px`);
+}, { passive: true });
+
+/* ---------- opening reveal (once per visit) ---------- */
+(function intro() {
+  let seen = false; try { seen = sessionStorage.getItem('infine:intro') === '1'; sessionStorage.setItem('infine:intro', '1'); } catch {}
+  const el = document.getElementById('intro'); if (!el) return;
+  if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) { el.remove(); return; }
+  el.hidden = false; setTimeout(() => el.classList.add('out'), 1500); setTimeout(() => el.remove(), 2100);
+})();
 chrome(); render(false);

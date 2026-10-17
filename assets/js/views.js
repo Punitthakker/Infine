@@ -28,7 +28,8 @@ function badges(p) {
 export function card(p, eager = false) {
   const gone = availability(p) === 'gone';
   return `<article class="card${gone ? ' is-gone' : ''}">
-    <a href="#/p/${p.slug}" class="card__media" aria-label="${esc(p.name)}">${prodMedia(p, eager)}<div class="card__badges">${badges(p)}</div></a>
+    <a href="#/p/${p.slug}" class="card__media" aria-label="${esc(p.name)}">${prodMedia(p, eager)}${p.gallery?.[0] ? `<span class="card__alt">${media(p.gallery[0], '')}</span>` : ''}<div class="card__badges">${badges(p)}</div></a>
+    ${availability(p) === 'live' ? `<button class="card__add" data-act="add" data-slug="${p.slug}" aria-label="add ${esc(p.name)} to bag">+</button>` : ''}
     <button class="card__wish" data-act="wish" data-slug="${p.slug}" aria-pressed="${S.isWished(p.slug)}" aria-label="save ${esc(p.name)}">${ICON.heart}</button>
     <a href="#/p/${p.slug}" class="card__name">${esc(p.name)}</a>
     <div class="card__meta"><span>${esc(p.type)}</span><span class="card__price">${p.sizes.length > 1 ? 'from ' : ''}${aed(fromPrice(p))}</span></div>
@@ -79,10 +80,18 @@ export function home() {
         <p class="mono hero__price">ear party<br>starts at<br><b>${aed(earPartyFrom())}</b></p>
         <p class="lede">real diamonds in solid 18k gold, made to stack. limited drops out of ${LAUNCH.city}.</p>
         <div class="hero__ctas"><a class="btn btn--lime" href="#/shop">shop the drop</a><a class="btn btn--line" href="#/drops">see drops</a></div>
+        <div class="fan" aria-label="drop 01 pieces">
+          ${['ice-line', 'ice-line-necklace', 'pave-huggie'].map((sl, i) => { const q = bySlug(sl); return `<a class="fan__card" style="--i:${i}" href="#/p/${sl}">${prodMedia(q, true)}<span class="sticker">${esc(q.name)} · ${aed(fromPrice(q))}</span></a>`; }).join('')}
+        </div>
       </div>
+      <a class="spinbadge" href="#/drops" aria-label="drop 01 early access is live">
+        <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text textLength="486" lengthAdjust="spacing"><textPath href="#circ" textLength="486" lengthAdjust="spacing">drop 01 · early access live · drop 01 · early access live · </textPath></text></svg>
+        ${pixelDiamond('spinbadge__dia')}
+      </a>
     </div>
   </section>
   <div class="strip on-ink" aria-hidden="true"><div class="strip__run">${strip}${strip}</div></div>
+  <div class="band on-pink" aria-hidden="true"><div class="band__run"><span>real diamonds</span><span>solid 18k gold</span><span>numbered editions</span><span>made in dubai</span><span>stack it</span><span>real diamonds</span><span>solid 18k gold</span><span>numbered editions</span><span>made in dubai</span><span>stack it</span></div></div>
 
   <section class="dropblk on-lime" aria-labelledby="d01">
     <div class="wrap dropblk__in">
@@ -161,6 +170,7 @@ export function home() {
     </div>
   </div></section>
 
+<div class="band on-lilac band--rev" aria-hidden="true"><div class="band__run"><span>main character energy</span><span>drop 01</span><span>gone is gone</span><span>your first diamond</span><span>main character energy</span><span>drop 01</span><span>gone is gone</span><span>your first diamond</span></div></div>
   <section class="sec on-pink" aria-labelledby="al"><div class="wrap sec__in">
     <h2 class="d2" id="al">get the drop<br>before everyone.</h2>
     <p class="lede">one message before each drop opens. no spam, no newsletters about our feelings.</p>
@@ -241,9 +251,22 @@ export function product(slug, sel = {}) {
       </div>
     </div>
   </div>
+  ${bundle(p, size)}
   ${related.length ? `<section class="sec__in" style="padding-bottom:72px"><h2 class="d4">stack it with</h2><div class="rail">${related.map(x => card(x)).join('')}</div></section>` : ''}
   </div>
   ${a === 'live' ? `<div class="stickybuy" data-stickybuy><div style="display:grid;min-width:0"><b class="card__name" style="font-size:18px">${esc(p.name)}</b><span class="mono small muted">${aed(size.price)}</span></div><button class="btn btn--lime" data-act="add" data-slug="${p.slug}">add to bag</button></div>` : ''}`;
+}
+
+function bundle(p, size) {
+  const pairs = { bracelets: ['mini-line', 'ice-line', 'pave-huggie'], necklaces: ['ice-line', 'solo-stud'], ear: ['pave-huggie', 'orbit-climber', 'solo-stud'], black: ['onyx-studs', 'midnight-line'], vault: ['solo-stud', 'mini-line'] }[p.cat] || [];
+  const q = pairs.map(bySlug).find(x => x && x.slug !== p.slug && availability(x) === 'live');
+  if (!q || availability(p) !== 'live') return '';
+  const tot = size.price + fromPrice(q);
+  return `<section class="bundle on-lime"><div class="bundle__in">
+    <div><p class="mono">complete the stack</p><h2 class="d3">${esc(p.name)} <span class="c-pink">+</span> ${esc(q.name)}</h2></div>
+    <div class="bundle__pics"><div>${prodMedia(p)}</div><b>+</b><div>${prodMedia(q)}</div></div>
+    <div class="bundle__buy"><p class="price">${aed(tot)}</p><button class="btn btn--ink" data-act="add-bundle" data-a="${p.slug}" data-b="${q.slug}">add both to bag</button></div>
+  </div></section>`;
 }
 
 /* ================= DROPS ================= */
