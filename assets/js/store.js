@@ -1,6 +1,6 @@
 // Client-side state: bag, wishlist, orders, drop alerts. localStorage when available,
 // in-memory otherwise (private windows, embedded previews). Swap for a real backend later.
-import { bySlug, PROMOS } from './data.js';
+import { bySlug, PROMOS } from './data.js?v=202610180748';
 
 const mem = {};
 const read = (k, d) => { try { const v = localStorage.getItem('infine:' + k); return v ? JSON.parse(v) : (mem[k] ?? d); } catch { return mem[k] ?? d; } };

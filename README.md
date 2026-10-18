@@ -10,9 +10,9 @@ Mobile-first, static, zero build step. Plain HTML, CSS and ES modules, so it dep
 | Route | Screen |
 | --- | --- |
 | `#/` | Launch home: "stack it" hero, drop 01 countdown, drop rail, first diamond, shop by vibe, after dark teaser, ear party, proof, how they stack, campaign posters, drop alerts |
-| `#/shop`, `#/shop/<category>` | Shop with category chips (tennis bracelets, tennis necklaces, ear party, black diamonds, the vault) and sorting |
+| `#/shop`, `#/shop/<category>` | Shop with category chips (tennis bracelets, tennis necklaces, ear party, black diamonds) and sorting |
 | `#/p/<slug>` | Product: gallery, carat / metal / length options, edition stock meter, add to bag, perks, specs, delivery / care / returns, related pieces, sticky buy bar on mobile |
-| `#/drops` | Drop 01 (live early access + public countdown), drop 02 after dark (countdown + notify), the vault |
+| `#/drops` | Drop 01 (live early access + public countdown), drop 02 after dark (countdown + notify) |
 | `#/bag` and the bag drawer | Line items, quantity (max 2 per drop piece), promo, totals, split-in-4 |
 | `#/checkout` | 3 steps: you, delivery (same day Dubai, UAE, GCC, gift option), payment (Apple Pay, card, split in 4) with validation |
 | `#/order/<id>` | Order confirmation |
@@ -51,7 +51,7 @@ assets/js/app.js           router, bag drawer, search, checkout logic, countdown
 assets/js/store.js         bag, wishlist, orders, alerts (localStorage for now)
 assets/js/jewel.js         renders tennis bracelets, necklaces, studs, huggies, climbers as SVG
 assets/js/brand.js         pixel diamond, smiley diamond mascot, dotted orbit, icons
-assets/img/                product photography (webp, logos cropped out)
+assets/img/                Gen Z lifestyle photography (gz-*.webp)
 assets/brand/              drop 01 campaign posters
 docs/BRAND.md              brand system: palette, type, voice, components
 ```
@@ -63,7 +63,7 @@ These are placeholders and must be confirmed:
 1. **Prices, carat weights, stone counts, edition sizes and stock** in `assets/js/data.js`.
 2. **Dates** in `LAUNCH` and `DROPS` (`data.js`). The posters say `drop 01 · [date] · dubai`; the site uses 14 Nov 2026, 8pm Dubai.
 3. **Product claims**: natural vs lab-grown, colour/clarity grades (F-G / VS), the certificate (lab name, e.g. IGI or GIA), "solid 18k gold only", black diamond treatment wording, returns and delivery promises. The site currently says natural diamonds and a certificate in every box.
-4. **Photography**: the necklace photos come from the supplier catalogue. Some carry a faint supplier watermark in the middle of the frame. Get clean, unwatermarked originals and written permission to use them under the infine brand. Tennis bracelets, ear party and black diamond pieces are rendered (`jewel.js`) until there's a shoot.
+4. **Photography**: the lifestyle shots (`assets/img/gz-*.webp`) are AI-generated with Figma AI: fictional young adults in plain, unbranded clothes, no logos. The jewellery in them is illustrative, so swap in your own shoot before launch. Product tiles use the rendered pieces from `jewel.js`. The bridal and colour-stone pieces (the old "vault") now live on infine.store only.
 5. **Contact**: WhatsApp number and `@infine` handle in `LAUNCH`.
 
 ## Connecting the real backend

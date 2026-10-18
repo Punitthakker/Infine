@@ -1,8 +1,8 @@
 // Screen templates. Each view returns an HTML string; app.js wires behaviour.
-import { PRODUCTS, DROPS, CATEGORIES, LAUNCH, bySlug, fromPrice, dropOf, dropStatus, availability, earPartyFrom } from './data.js';
-import { jewelSVG } from './jewel.js';
-import { pixelDiamond, mascot, orbit, sparkle, ICON } from './brand.js';
-import * as S from './store.js';
+import { PRODUCTS, DROPS, CATEGORIES, LAUNCH, bySlug, fromPrice, dropOf, dropStatus, availability, earPartyFrom } from './data.js?v=202610180748';
+import { jewelSVG } from './jewel.js?v=202610180748';
+import { pixelDiamond, mascot, orbit, sparkle, ICON } from './brand.js?v=202610180748';
+import * as S from './store.js?v=202610180748';
 
 export const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const aed = n => 'AED ' + Math.round(n).toLocaleString('en-US');
@@ -59,15 +59,15 @@ export function home() {
   const d1 = DROPS[0], d2 = DROPS[1];
   const drop01 = PRODUCTS.filter(p => p.drop === 'drop-01');
   const ear = PRODUCTS.filter(p => p.cat === 'ear');
-  const stripImgs = ['model-tennis-tall', 'model-emerald-long-tall', 'model-fringe-tall', 'model-ruby-tall', 'model-diamond-tall', 'model-emerald-tall'];
+  const stripImgs = ['gz-neon-stack', 'gz-kandura', 'gz-squad', 'gz-abaya', 'gz-pink-chains', 'gz-skater', 'gz-arms-yo', 'gz-mirror'];
   const strip = stripImgs.map(s => `<figure><img src="${IMG(s)}" alt="" loading="lazy"></figure>`).join('');
   const tiles = [
     ['bracelets', 'tennis bracelets', 'on-lime', { art: { kind: 'bracelet', stones: 'white' }, bg: 'lime' }],
-    ['necklaces', 'tennis necklaces', 'on-ink', { img: 'triple-line' }],
+    ['necklaces', 'tennis necklaces', 'on-ink', { img: 'gz-pink-chains' }],
     ['ear', 'ear party', 'on-pink', { art: { kind: 'climber', stones: 'white' }, bg: 'pink' }],
     ['black', 'black diamonds', 'on-lilac', { art: { kind: 'necklace', stones: 'black' }, bg: 'lilac' }],
-    ['vault', 'the vault', 'on-ink', { img: 'ice-choker' }],
-  ].map(([id, l, c, m]) => `<a class="tile ${c}" href="#/shop/${id}">${media(m, l)}<b>${l}</b><small class="sticker ${c === 'on-ink' ? 'sticker--lime' : 'sticker--ink'}">${PRODUCTS.filter(p => p.cat === id).length} pieces</small></a>`).join('');
+    ['all', 'shop the squad', 'on-ink', { img: 'gz-squad' }],
+  ].map(([id, l, c, m]) => `<a class="tile ${c}" href="#/shop/${id}">${media(m, l)}<b>${l}</b><small class="sticker ${c === 'on-ink' ? 'sticker--lime' : 'sticker--ink'}">${(id === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === id)).length} pieces</small></a>`).join('');
   return `
   <section class="hero on-ink">
     ${orbit('hero__orbit')}
@@ -158,7 +158,7 @@ export function home() {
   <section class="sec on-ink"><div class="wrap sec__in">
     <div class="sec__head"><h2 class="d3">how they <span class="c-lime">stack</span></h2><span class="mono muted">tap a look to shop it</span></div>
     <div class="stack">
-      ${[['model-tennis-tall', 'ice-line-necklace'], ['model-fringe-tall', 'fringe-line'], ['model-emerald-long-tall', 'emerald-drop'], ['model-ruby-tall', 'ruby-lariat'], ['model-diamond-tall', 'pear-v'], ['model-emerald-tall', 'emerald-drop']]
+      ${[['gz-neon-stack', 'ice-line'], ['gz-arms-yo', 'midnight-line'], ['gz-kandura', 'salt-pepper-line'], ['gz-mirror', 'mini-line'], ['gz-pink-chains', 'midnight-necklace'], ['gz-abaya', 'rose-line']]
       .map(([i, s]) => `<a href="#/p/${s}"><figure><img src="${IMG(i)}" alt="${esc(bySlug(s).name)} styled" loading="lazy"><figcaption><span class="sticker">${esc(bySlug(s).name)}</span></figcaption></figure></a>`).join('')}
     </div>
   </div></section>
@@ -273,7 +273,7 @@ function bundle(p, size) {
 export function drops() {
   const blk = d => {
     const st = dropStatus(d), ps = PRODUCTS.filter(p => p.drop === d.id);
-    const art = d.id === 'drop-01' ? pixelDiamond('pixdia') : d.id === 'drop-02' ? jewelSVG({ kind: 'bracelet', stones: 'black' }, { bg: 'lilac' }) : `<img src="${IMG('ice-choker')}" alt="" style="border-radius:22px;width:min(100%,360px)">`;
+    const art = d.id === 'drop-01' ? pixelDiamond('pixdia') : jewelSVG({ kind: 'bracelet', stones: 'black' }, { bg: 'lilac' });
     const stTag = st === 'live' ? '<span class="sticker sticker--pink sticker--live">live</span>' : st === 'soon' ? `<span class="sticker sticker--white">opens ${shortDate(d.opens)}</span>` : '<span class="sticker sticker--ink">closed</span>';
     return `<article class="dropcard on-${d.bg}">
       <div class="dropcard__art">${art}</div>
