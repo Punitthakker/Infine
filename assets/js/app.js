@@ -1,7 +1,7 @@
 // infine.store: router, chrome, bag drawer, search, checkout, little moments of delight.
-import { BRAND, bySlug, PROMOS } from './data.js?v=202610172051';
-import * as V from './views.js?v=202610172051';
-import * as S from './store.js?v=202610172051';
+import { BRAND, bySlug, PROMOS } from './data.js?v=202610181016';
+import * as V from './views.js?v=202610181016';
+import * as S from './store.js?v=202610181016';
 
 const $ = (s, r = document) => r.querySelector(s);
 const app = $('#app');
@@ -41,7 +41,7 @@ const footer = () => `<footer><div class="wrap foot">
     <div><h4>Visit</h4><span>Private viewings in ${BRAND.city}, by appointment</span><span>${BRAND.site}</span></div>
   </div>
   <div class="foot__mark" aria-hidden="true">infine.</div>
-  <p class="small muted">© ${new Date().getFullYear()} infine. Real diamonds, solid 18k gold. Dubai, UAE.</p></div></footer>`;
+  <p class="small muted">© ${new Date().getFullYear()} infine. Lab-grown diamonds, solid 18k gold. Dubai, UAE.</p></div></footer>`;
 
 /* ---------- router ---------- */
 function parse() {

@@ -1,6 +1,6 @@
 // Screens for infine.store. Each returns an HTML string; app.js wires behaviour.
-import { PRODUCTS, CATEGORIES, BRAND, bySlug, inCat, catOf } from './data.js?v=202610172051';
-import * as S from './store.js?v=202610172051';
+import { PRODUCTS, CATEGORIES, BRAND, bySlug, inCat, catOf } from './data.js?v=202610181016';
+import * as S from './store.js?v=202610181016';
 
 export const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const aed = n => 'AED ' + Math.round(n).toLocaleString('en-US');
@@ -88,12 +88,12 @@ export function home() {
   return `
   <section class="hero">
     <div class="hero__media">
-      <video autoplay muted loop playsinline preload="auto" poster="assets/video/hero-poster.jpg?v=202610172051" aria-hidden="true"><source src="assets/video/hero.mp4?v=202610172051" type="video/mp4"></video>
+      <video autoplay muted loop playsinline preload="auto" poster="assets/video/hero-poster.jpg?v=202610181016" aria-hidden="true"><source src="assets/video/hero.mp4?v=202610181016" type="video/mp4"></video>
     </div>
     <div class="wrap hero__in">
       <p class="kicker">${BRAND.edit} · ${BRAND.city}</p>
       <h1 class="h-hero"><span class="ln"><span>Made to be</span></span><span class="ln"><span>adored.</span></span></h1>
-      <p class="lede">Real diamonds in solid 18k gold, for the woman who doesn't wait to be given them.</p>
+      <p class="lede">Lab-grown diamonds in solid 18k gold, for the woman who doesn't wait to be given them.</p>
       <div class="hero__ctas"><a class="btn btn--gold" href="#/shop">Shop the edit</a><a class="btn btn--line" href="#film">Watch the film</a></div>
       ${cutoff()}
     </div>
@@ -166,7 +166,7 @@ export function home() {
   </div></section>
 
   <div class="promise">
-    <div>${ICON.cert}<b>Real diamonds</b><span>Graded and certified, with the certificate in the box.</span></div>
+    <div>${ICON.cert}<b>Lab-grown diamonds</b><span>Top grade: D-F colour, VVS clarity. IGI certificate in the box.</span></div>
     <div>${ICON.gold}<b>Solid 18k gold</b><span>White, yellow or rose. Never plated.</span></div>
     <div>${ICON.truck}<b>Same day in Dubai</b><span>Order before 2pm. Free, insured, signed for.</span></div>
     <div>${ICON.gift}<b>Gift-wrapped</b><span>Every order, with a handwritten note if you like.</span></div>
@@ -248,11 +248,11 @@ export function product(slug, sel = {}) {
       ${cutoff()}
       <div class="perks">
         <div>${ICON.truck}Free same-day delivery in Dubai, insured and signed for</div>
-        <div>${ICON.cert}Diamond certificate included</div>
+        <div>${ICON.cert}IGI certificate included</div>
         <div>${ICON.swap}14-day free returns across the UAE</div>
       </div>
       <div>
-        <details class="acc" open><summary>Details</summary><div><table class="specs"><tbody><tr><th>Metal</th><td>${esc(p.metal)}</td></tr><tr><th>Stones</th><td>${esc(p.stones)}</td></tr><tr><th>Diamonds</th><td>Natural, F-G colour, VS clarity</td></tr><tr><th>Certificate</th><td>Included</td></tr></tbody></table></div></details>
+        <details class="acc" open><summary>Details</summary><div><table class="specs"><tbody><tr><th>Metal</th><td>${esc(p.metal)}</td></tr><tr><th>Stones</th><td>${esc(p.stones)}</td></tr><tr><th>Diamonds</th><td>Lab-grown, D-F colour, VVS clarity, excellent cut</td></tr><tr><th>Certificate</th><td>IGI, included</td></tr></tbody></table></div></details>
         <details class="acc"><summary>Delivery & returns</summary><div><p>Dubai: same day if you order before 2pm, free. Rest of the UAE: 1-2 days, free. GCC: 3-5 days.</p><p>Free returns within 14 days, unworn, with the certificate and box. Resized and engraved pieces are final sale.</p></div></details>
         <details class="acc"><summary>Care</summary><div><p>Take it off for the gym, the pool and the beach. Warm water, mild soap, a soft brush. We clean and check your pieces for free, for life.</p></div></details>
       </div>
@@ -354,7 +354,7 @@ export function story() {
     <div class="wrap hero__in"><p class="kicker">Our story</p><h1 class="h-hero" style="font-size:clamp(56px,12vw,140px)"><span class="ln"><span>For the woman</span></span><span class="ln"><span>who knows.</span></span></h1></div></section>
   <section class="sec"><div class="wrap pair"><div class="prose">
     <p>infine. began with a simple idea: the most beautiful diamonds shouldn't wait for someone else to give them to you.</p>
-    <p>Every piece is made in solid 18k gold and set with natural diamonds, graded and certified. We design for real life in Dubai: the brunch, the boardroom, the rooftop, the moment you catch your own reflection and smile.</p>
+    <p>Every piece is made in solid 18k gold and set with top-grade lab-grown diamonds, IGI graded and certified. We design for real life in Dubai: the brunch, the boardroom, the rooftop, the moment you catch your own reflection and smile.</p>
     <p>We make in small editions, so what you wear feels like yours. When a piece is gone, it's gone.</p></div>
     <div class="tile tile--photo"><img src="${IMG('model-emerald-tall')}" alt="" loading="lazy"></div></div></section>`;
 }
@@ -369,7 +369,7 @@ export function guide() {
     <label for="wrist" class="small muted">Your wrist, measured snugly, in centimetres</label>
     <input type="range" id="wrist" min="13" max="20" step=".5" value="15.5" data-act="wrist">
     <p class="small muted" data-wrist-out>Wrist 15.5 cm</p><output for="wrist" data-wrist-size>6.5"</output></div></section>
-  <section style="max-width:760px">${[['Are your diamonds real?', 'Yes. Natural diamonds, graded F-G colour and VS clarity, set in solid 18k gold. A certificate comes with every piece.'], ['How fast is delivery?', 'Same day in Dubai when you order before 2pm. 1-2 days across the UAE, 3-5 days to the GCC. Always insured and signed for.'], ['Can I return it?', 'Within 14 days, unworn, with the certificate and box. Free across the UAE. Resized and engraved pieces are final sale.'], ['How do I care for my jewellery?', 'Take it off for the gym, the pool and the beach. Clean with warm water, mild soap and a soft brush. We clean and check your pieces for free, for life.'], ['Can I see pieces in person?', `Yes. Book a private viewing in Dubai on WhatsApp ${BRAND.whatsapp}.`]].map(([q, a]) => `<details class="acc"><summary>${q}</summary><div><p>${a}</p></div></details>`).join('')}</section></div>`;
+  <section style="max-width:760px">${[['Are lab-grown diamonds real?', 'Yes. A lab-grown diamond is a real diamond: the same crystal, hardness and fire as a mined one, grown above ground. Ours are top grade, D-F colour and VVS clarity, set in solid 18k gold, with an IGI certificate in every box.'], ['How fast is delivery?', 'Same day in Dubai when you order before 2pm. 1-2 days across the UAE, 3-5 days to the GCC. Always insured and signed for.'], ['Can I return it?', 'Within 14 days, unworn, with the certificate and box. Free across the UAE. Resized and engraved pieces are final sale.'], ['How do I care for my jewellery?', 'Take it off for the gym, the pool and the beach. Clean with warm water, mild soap and a soft brush. We clean and check your pieces for free, for life.'], ['Can I see pieces in person?', `Yes. Book a private viewing in Dubai on WhatsApp ${BRAND.whatsapp}.`]].map(([q, a]) => `<details class="acc"><summary>${q}</summary><div><p>${a}</p></div></details>`).join('')}</section></div>`;
 }
 export const notFound = () => `<div class="wrap"><div class="empty"><h1 class="h1 it">This page slipped away.</h1><a class="btn btn--gold" href="#/">Back home</a></div></div>`;
 export function searchResults(q) {

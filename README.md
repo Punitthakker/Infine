@@ -1,7 +1,7 @@
 # infine. for her (infine.store)
 
 The ladies' storefront for infine: dark, elegant and sensual, in the mood of the *Adored Edit* film.
-Real diamonds in solid 18k gold: rings, stacking bands, huggies and hoops, bracelets and necklaces.
+Top-grade lab-grown diamonds in solid 18k gold: rings, stacking bands, huggies and hoops, bracelets and necklaces.
 
 Static site, no build step: HTML, CSS and ES modules. Deploys anywhere that serves files.
 
@@ -44,7 +44,7 @@ Add `infine.store` under Domain management in Netlify first. HTTPS is issued aut
 Placeholders to confirm, all in `assets/js/data.js` unless noted:
 
 1. Prices, stock (`left`) and stone descriptions for every piece.
-2. Claims shown on product pages: natural diamonds, F-G / VS, certificate included, solid 18k gold, 14-day returns, free same-day delivery in Dubai before 2pm, lifetime cleaning, free resizing within 30 days.
+2. Claims shown on product pages: lab-grown diamonds, D-F / VVS, IGI certificate included, solid 18k gold, 14-day returns, free same-day delivery in Dubai before 2pm, lifetime cleaning, free resizing within 30 days.
 3. Promo codes `ADORED10` and `STACK10` (10% each) are demo codes.
 4. Photography: rings are cropped from the CAD sheets in *Rings_5.pdf*; bands, hoops and bracelets come from the supplier catalogues; necklaces and model shots from the earlier catalogue (some carry a faint supplier watermark). Get clean originals and written permission to use them under the infine brand.
 5. The hero loop and the Dubai edit slideshow (`assets/img/dxb-*.webp`, edit `SLIDES` in `views.js`) use five AI-generated stills (Figma AI, file "infine.store hero stills"): a fictional Indian model against an unbranded Dubai Marina skyline, no logos or landmarks. The film is the *Adored Edit*.
