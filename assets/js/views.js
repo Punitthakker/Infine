@@ -1,6 +1,6 @@
 // Screens for infine.store. Each returns an HTML string; app.js wires behaviour.
-import { PRODUCTS, CATEGORIES, BRAND, bySlug, inCat, catOf } from './data.js?v=202610181016';
-import * as S from './store.js?v=202610181016';
+import { PRODUCTS, CATEGORIES, BRAND, bySlug, inCat, catOf } from './data.js?v=202610181047';
+import * as S from './store.js?v=202610181047';
 
 export const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const aed = n => 'AED ' + Math.round(n).toLocaleString('en-US');
@@ -42,11 +42,10 @@ export function card(p, eager = false) {
 }
 /* The Dubai edit: editorial slideshow (images in assets/img/dxb-*.webp) */
 const SLIDES = [
-  { img: 'dxb-rooftop', place: 'Dubai Marina, blue hour', t: ['After dark', 'in Dubai.'], line: 'The city lights up. So do you.', shop: ['riviera', 'halo-huggies'] },
+  { img: 'dxb-emirati', place: 'The majlis, after dark', t: ['After dark', 'in Dubai.'], line: 'Candlelight, diamond drops and nowhere to be.', shop: ['halo-huggies', 'classic-tennis'] },
+  { img: 'dxb-marina', place: 'Dubai Marina, blue hour', t: ['All eyes', 'on you.'], line: 'A riviera of diamonds, graduated to frame the collarbone.', shop: ['riviera', 'fringe-riviera'] },
   { img: 'dxb-hand', place: 'The balcony', t: ['Yours,', 'not his.'], line: 'An oval that catches every light on the water.', shop: ['oval-whisper', 'classic-tennis'] },
-  { img: 'dxb-promenade', place: 'The promenade, golden hour', t: ['Golden', 'hour.'], line: 'Hoops that move when you do.', shop: ['baguette-hoops', 'bezel-tennis'] },
-  { img: 'dxb-riviera', place: 'Rooftop, after dinner', t: ['All eyes', 'on you.'], line: 'A riviera of diamonds, graduated to frame the collarbone.', shop: ['riviera', 'fringe-riviera'] },
-  { img: 'dxb-emerald', place: 'Candlelit, by the water', t: ['Stay a little', 'longer.'], line: 'Huggies for the nights you will talk about next year.', shop: ['halo-huggies', 'trio-huggies'] },
+  { img: 'dxb-rooftop', place: 'Rooftop, city lights', t: ['Stay a little', 'longer.'], line: 'The city lights up. So do you.', shop: ['halo-huggies', 'trio-huggies'] },
 ];
 function slideshow() {
   const n = SLIDES.length, pad = i => String(i + 1).padStart(2, '0');
@@ -78,7 +77,7 @@ const cutoff = () => `<p class="cutoff"><span>Order within <b data-cutoff-t>--</
 export function home() {
   const rings = inCat('rings'), bands = inCat('bands'), hoops = inCat('earrings'), brc = inCat('bracelets'), neck = inCat('necklaces');
   const moods = [
-    ['necklaces', { img: 'dxb-riviera', tone: 'photo' }, 'Necklaces'],
+    ['necklaces', { img: 'dxb-marina', tone: 'photo' }, 'Necklaces'],
     ['rings', { img: 'ring-014', tone: 'dark' }, 'Rings'],
     ['earrings', { img: 'hoop-017', tone: 'light' }, 'Huggies & hoops'],
     ['bands', { img: 'band-1_11', tone: 'light' }, 'Stacking bands'],
@@ -88,7 +87,7 @@ export function home() {
   return `
   <section class="hero">
     <div class="hero__media">
-      <video autoplay muted loop playsinline preload="auto" poster="assets/video/hero-poster.jpg?v=202610181016" aria-hidden="true"><source src="assets/video/hero.mp4?v=202610181016" type="video/mp4"></video>
+      <video autoplay muted loop playsinline preload="auto" poster="assets/video/hero-poster.jpg?v=202610181047" aria-hidden="true"><source src="assets/video/hero.mp4?v=202610181047" type="video/mp4"></video>
     </div>
     <div class="wrap hero__in">
       <p class="kicker">${BRAND.edit} · ${BRAND.city}</p>
@@ -174,7 +173,7 @@ export function home() {
   </div>
 
   <section class="viewing">
-    <img src="${IMG('dxb-emerald')}" alt="" loading="lazy">
+    <img src="${IMG('dxb-emirati')}" alt="" loading="lazy">
     <div class="wrap viewing__in">
       <p class="kicker">Private viewing</p>
       <h2 class="h1">Try it on <span class="it">in person.</span></h2>
@@ -350,7 +349,7 @@ export function account() {
 
 /* ================= STORY / GUIDE ================= */
 export function story() {
-  return `<section class="hero" style="min-height:70vh"><div class="hero__media"><img src="${IMG('dxb-rooftop')}" alt=""></div>
+  return `<section class="hero" style="min-height:70vh"><div class="hero__media"><img src="${IMG('dxb-marina')}" alt=""></div>
     <div class="wrap hero__in"><p class="kicker">Our story</p><h1 class="h-hero" style="font-size:clamp(56px,12vw,140px)"><span class="ln"><span>For the woman</span></span><span class="ln"><span>who knows.</span></span></h1></div></section>
   <section class="sec"><div class="wrap pair"><div class="prose">
     <p>infine. began with a simple idea: the most beautiful diamonds shouldn't wait for someone else to give them to you.</p>

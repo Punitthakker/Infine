@@ -1,6 +1,6 @@
 // Client-side state: bag, wishlist, orders. localStorage when available, memory otherwise.
 // Swap for your commerce backend later; keep these function names and the views won't change.
-import { bySlug, PROMOS } from './data.js?v=202610181016';
+import { bySlug, PROMOS } from './data.js?v=202610181047';
 
 const mem = {};
 const read = (k, d) => { try { const v = localStorage.getItem('infine-store:' + k); return v ? JSON.parse(v) : (mem[k] ?? d); } catch { return mem[k] ?? d; } };
