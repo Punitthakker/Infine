@@ -1,8 +1,8 @@
 // infine. storefront: hash router, chrome (header, tabs, bag drawer, search), interactions.
-import { LAUNCH, bySlug, PROMOS } from './data.js?v=202610181016';
-import { ICON } from './brand.js?v=202610181016';
-import * as V from './views.js?v=202610181016';
-import * as S from './store.js?v=202610181016';
+import { LAUNCH, bySlug, PROMOS } from './data.js?v=202610181306';
+import { ICON } from './brand.js?v=202610181306';
+import * as V from './views.js?v=202610181306';
+import * as S from './store.js?v=202610181306';
 
 const $ = (s, r = document) => r.querySelector(s);
 const app = $('#app');

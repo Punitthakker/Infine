@@ -1,8 +1,8 @@
 // Screen templates. Each view returns an HTML string; app.js wires behaviour.
-import { PRODUCTS, DROPS, CATEGORIES, LAUNCH, bySlug, fromPrice, dropOf, dropStatus, availability, earPartyFrom } from './data.js?v=202610181016';
-import { jewelSVG } from './jewel.js?v=202610181016';
-import { pixelDiamond, mascot, orbit, sparkle, ICON } from './brand.js?v=202610181016';
-import * as S from './store.js?v=202610181016';
+import { PRODUCTS, DROPS, CATEGORIES, LAUNCH, bySlug, fromPrice, dropOf, dropStatus, availability, earPartyFrom } from './data.js?v=202610181306';
+import { jewelSVG } from './jewel.js?v=202610181306';
+import { pixelDiamond, mascot, orbit, sparkle, ICON } from './brand.js?v=202610181306';
+import * as S from './store.js?v=202610181306';
 
 export const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const aed = n => 'AED ' + Math.round(n).toLocaleString('en-US');
@@ -60,7 +60,7 @@ export function home() {
   const d1 = DROPS[0], d2 = DROPS[1];
   const drop01 = PRODUCTS.filter(p => p.drop === 'drop-01');
   const ear = PRODUCTS.filter(p => p.cat === 'ear');
-  const stripImgs = ['gz-skater', 'gz-kandura', 'gz-mirror', 'gz-squad', 'gz-pink-chains', 'gz-abaya', 'gz-neon-stack', 'gz-arms-yo'];
+  const stripImgs = ['gz-braids', 'gz-neon-bob', 'gz-desert', 'gz-skatepark', 'gz-car', 'gz-kandura', 'gz-rooftop', 'gz-layers', 'gz-skater', 'gz-abaya', 'gz-pink-chains', 'gz-neon-stack'];
   const strip = stripImgs.map(s => `<figure><img src="${IMG(s)}" alt="" loading="lazy"></figure>`).join('');
   const tiles = [
     ['bracelets', 'tennis bracelets', 'on-lime', { art: { kind: 'bracelet', stones: 'white' }, bg: 'lime' }],
@@ -68,7 +68,7 @@ export function home() {
     ['ear', 'ear party', 'on-pink', { art: { kind: 'climber', stones: 'white' }, bg: 'pink' }],
     ['black', 'black diamonds', 'on-lilac', { art: { kind: 'necklace', stones: 'black' }, bg: 'lilac' }],
     ['iced', 'iced out', 'on-ink', { video: 'ice-ceo' }],
-    ['all', 'shop the squad', 'on-ink', { img: 'gz-squad' }],
+    ['all', 'shop the squad', 'on-ink', { img: 'gz-desert' }],
   ].map(([id, l, c, m]) => `<a class="tile ${c}" href="#/shop/${id}">${media(m, l)}<b>${l}</b><small class="sticker ${c === 'on-ink' ? 'sticker--lime' : 'sticker--ink'}">${(id === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === id)).length} pieces</small></a>`).join('');
   return `
   <section class="hero on-ink">
@@ -166,7 +166,7 @@ export function home() {
   <section class="sec on-ink"><div class="wrap sec__in">
     <div class="sec__head"><h2 class="d3">how they <span class="c-lime">stack</span></h2><span class="mono muted">tap a look to shop it</span></div>
     <div class="stack">
-      ${[['gz-skater', 'midnight-line'], ['gz-kandura', 'salt-pepper-line'], ['gz-mirror', 'mini-line'], ['gz-pink-chains', 'midnight-necklace'], ['gz-abaya', 'rose-line'], ['gz-neon-stack', 'ice-line']]
+      ${[['gz-braids', 'salt-pepper-line'], ['gz-neon-bob', 'ice-line'], ['gz-layers', 'midnight-necklace'], ['gz-skatepark', 'midnight-line'], ['gz-car', 'mini-line'], ['gz-desert', 'baguette-line']]
       .map(([i, s]) => `<a href="#/p/${s}"><figure><img src="${IMG(i)}" alt="${esc(bySlug(s).name)} styled" loading="lazy"><figcaption><span class="sticker">${esc(bySlug(s).name)}</span></figcaption></figure></a>`).join('')}
     </div>
   </div></section>
