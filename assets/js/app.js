@@ -1,8 +1,8 @@
 // infine. storefront: hash router, chrome (header, tabs, bag drawer, search), interactions.
-import { LAUNCH, bySlug, PROMOS } from './data.js?v=202610180748';
-import { ICON } from './brand.js?v=202610180748';
-import * as V from './views.js?v=202610180748';
-import * as S from './store.js?v=202610180748';
+import { LAUNCH, bySlug, PROMOS } from './data.js?v=202610180937';
+import { ICON } from './brand.js?v=202610180937';
+import * as V from './views.js?v=202610180937';
+import * as S from './store.js?v=202610180937';
 
 const $ = (s, r = document) => r.querySelector(s);
 const app = $('#app');
@@ -17,7 +17,7 @@ function chrome() {
   <div class="ticker" aria-label="announcements"><div class="ticker__run">${Array(2).fill(`<span>drop 01: main character energy</span><span>early access open now</span><span>public drop ${new Date(LAUNCH.publicDrop).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', timeZone: 'Asia/Dubai' }).toLowerCase()}, 8pm dubai</span><span>free same-day delivery in dubai</span><span>real diamonds, solid 18k gold</span>`).join('')}</div></div>
   <header class="hdr"><div class="wrap hdr__in">
     <a class="logo" href="#/" aria-label="infine home">infine<i>.</i></a>
-    <nav class="nav" aria-label="main">${[['#/shop', 'shop', 'shop'], ['#/drops', 'drops', 'drops'], ['#/shop/black', 'black diamonds', 'black'], ['#/story', 'story', 'story'], ['#/guide', 'diamond 101', 'guide']]
+    <nav class="nav" aria-label="main">${[['#/shop', 'shop', 'shop'], ['#/drops', 'drops', 'drops'], ['#/shop/iced', 'iced out', 'iced'], ['#/shop/black', 'black diamonds', 'black'], ['#/story', 'story', 'story'], ['#/guide', 'diamond 101', 'guide']]
       .map(([h, l, k]) => `<a href="${h}" data-nav="${k}">${l}</a>`).join('')}</nav>
     <div class="hdr__act">
       <button class="icon-btn" data-act="search" aria-label="search">${ICON.search}</button>
@@ -37,7 +37,7 @@ function markNav() {
 function footer() {
   return `<footer class="on-ink"><div class="wrap foot">
     <div class="foot__cols">
-      <div><h4>shop</h4><a href="#/shop/bracelets">tennis bracelets</a><a href="#/shop/necklaces">tennis necklaces</a><a href="#/shop/ear">ear party</a><a href="#/shop/black">black diamonds</a></div>
+      <div><h4>shop</h4><a href="#/shop/bracelets">tennis bracelets</a><a href="#/shop/necklaces">tennis necklaces</a><a href="#/shop/ear">ear party</a><a href="#/shop/black">black diamonds</a><a href="#/shop/iced">iced out</a></div>
       <div><h4>infine</h4><a href="#/drops">drops</a><a href="#/story">story</a><a href="#/guide">diamond 101</a><a href="#/account">account</a></div>
       <div><h4>help</h4><a href="#/guide">sizing</a><a href="#/guide">care + faqs</a><span class="mono small muted" style="display:block;padding:5px 0">whatsapp ${LAUNCH.whatsapp}</span></div>
       <div><h4>follow</h4><span style="display:block;padding:5px 0">${LAUNCH.handle}</span><span class="mono small muted">instagram · tiktok</span></div>

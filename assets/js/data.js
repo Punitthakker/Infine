@@ -132,6 +132,52 @@ export const PRODUCTS = [
     metals: ['18k black rhodium', '18k yellow gold'], lengths: ['push back'],
     edition: 100, left: 100, specs: { colour: 'black (natural, colour treated)', clarity: 'opaque', cut: 'round brilliant', setting: '4-prong martini' }, tags: ['drop 02'],
   },
+  // ---------- iced out (drop 03) ----------
+  {
+    slug: 'ceo-pendant', name: 'ceo', type: 'iced pendant', cat: 'iced', drop: 'drop-03', bg: 'ink',
+    blurb: 'three letters in baguette diamonds, set edge to edge on a chunky bail. say less.',
+    video: 'ice-ceo', gallery: [],
+    sizes: [{ label: 'pendant', price: 18500, stones: 180 }, { label: 'pendant + rope chain', price: 23900, stones: 180 }],
+    metals: ['18k white gold', '18k yellow gold'], lengths: ['20"', '22"', '24"'],
+    edition: 15, left: 9, specs: { colour: 'F-G', clarity: 'VS', cut: 'baguette + round brilliant', setting: 'channel + prong' }, tags: ['drop 03'],
+  },
+  {
+    slug: 'goat-pendant', name: 'the goat', type: 'iced pendant', cat: 'iced', drop: 'drop-03', bg: 'ink',
+    blurb: 'a fully iced goat with a swinging dollar charm. greatest of all time, obviously.',
+    video: 'ice-goat', gallery: [],
+    sizes: [{ label: 'pendant', price: 16900, stones: 420 }, { label: 'pendant + tennis chain', price: 27900, stones: 516 }],
+    metals: ['18k white gold', '18k yellow gold'], lengths: ['20"', '22"'],
+    edition: 12, left: 7, specs: { colour: 'F-G', clarity: 'VS', cut: 'round brilliant pavé', setting: 'micro pavé' }, tags: ['drop 03'],
+  },
+  {
+    slug: 'jesus-cross', name: 'jesus cross', type: 'iced pendant', cat: 'iced', drop: 'drop-03', bg: 'ink',
+    blurb: 'a hand-sculpted face on a pavé cross, with blue and red marquise accents. heavy in the hand, heavier on the chain.',
+    img: 'ice-cross', gallery: [],
+    sizes: [{ label: 'pendant', price: 26500, stones: 640 }], metals: ['18k rose gold', '18k yellow gold'], lengths: ['22"', '24"'],
+    edition: 8, left: 5, specs: { colour: 'F-G diamonds, blue + red accents', clarity: 'VS', cut: 'round pavé + marquise', setting: 'pavé + prong' }, tags: ['drop 03'],
+  },
+  {
+    slug: 'jesus-piece', name: 'jesus piece', type: 'iced pendant', cat: 'iced', drop: 'drop-03', bg: 'ink',
+    blurb: 'the classic piece: a sculpted gold face, iced crown and beard, framed in blue and red stones.',
+    img: 'ice-jesus', gallery: [],
+    sizes: [{ label: 'pendant', price: 21500, stones: 520 }], metals: ['18k yellow gold'], lengths: ['22"', '24"'],
+    edition: 8, left: 4, specs: { colour: 'F-G diamonds, blue + red accents', clarity: 'VS', cut: 'round pavé', setting: 'pavé + prong' }, tags: ['drop 03'],
+  },
+  {
+    slug: 'skull-ring', name: 'skull ring', type: 'iced ring', cat: 'iced', drop: 'drop-03', bg: 'ink',
+    blurb: 'a full pavé skull that wraps the finger. comes in iced white or yellow gold.',
+    video: 'ice-skull', gallery: [],
+    sizes: [{ label: 'one ring', price: 9800, stones: 260 }], metals: ['18k white gold', '18k yellow gold'], lengths: ['US 8', 'US 9', 'US 10', 'US 11', 'US 12'],
+    edition: 20, left: 12, specs: { colour: 'F-G', clarity: 'VS', cut: 'round brilliant pavé', setting: 'micro pavé' }, tags: ['drop 03'],
+  },
+  {
+    slug: 'money-stack', name: 'money stack', type: 'ring stack', cat: 'iced', drop: 'drop-03', bg: 'ink',
+    blurb: 'a baguette dollar ring and two iced eye rings with a big centre stone. wear all three or split them.',
+    video: 'ice-stack', gallery: [],
+    sizes: [{ label: 'dollar ring', price: 8900, stones: 96 }, { label: 'eye ring', price: 6400, stones: 120 }, { label: 'full stack (3)', price: 19900, stones: 336 }],
+    metals: ['18k white gold', '18k yellow gold'], lengths: ['US 6', 'US 7', 'US 8', 'US 9', 'US 10'],
+    edition: 20, left: 14, specs: { colour: 'F-G', clarity: 'VS', cut: 'baguette + round brilliant', setting: 'channel + pavé' }, tags: ['drop 03'],
+  },
 ];
 
 export const DROPS = [
@@ -139,6 +185,8 @@ export const DROPS = [
     opens: LAUNCH.earlyAccess, publicAt: LAUNCH.publicDrop, closes: '2026-12-14T23:59:00+04:00', bg: 'lime' },
   { id: 'drop-02', no: '02', name: 'after dark', line: 'black diamonds only. a tennis line, salt & pepper, a necklace and the studs.',
     opens: '2026-12-05T20:00:00+04:00', closes: '2027-01-05T23:59:00+04:00', bg: 'ink' },
+  { id: 'drop-03', no: '03', name: 'iced out', line: 'hand-set pendants and rings, fully iced. ceo, the goat, the jesus pieces, skulls and the money stack.',
+    opens: LAUNCH.earlyAccess, closes: '2027-02-28T23:59:00+04:00', bg: 'pink' },
 ];
 
 export const CATEGORIES = [
@@ -147,6 +195,7 @@ export const CATEGORIES = [
   { id: 'necklaces', label: 'tennis necklaces' },
   { id: 'ear', label: 'ear party' },
   { id: 'black', label: 'black diamonds' },
+  { id: 'iced', label: 'iced out' },
 ];
 
 export const PROMOS = { MAINCHARACTER: 0.10 }; // demo code: 10% off

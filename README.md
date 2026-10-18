@@ -12,7 +12,7 @@ Mobile-first, static, zero build step. Plain HTML, CSS and ES modules, so it dep
 | `#/` | Launch home: "stack it" hero, drop 01 countdown, drop rail, first diamond, shop by vibe, after dark teaser, ear party, proof, how they stack, campaign posters, drop alerts |
 | `#/shop`, `#/shop/<category>` | Shop with category chips (tennis bracelets, tennis necklaces, ear party, black diamonds) and sorting |
 | `#/p/<slug>` | Product: gallery, carat / metal / length options, edition stock meter, add to bag, perks, specs, delivery / care / returns, related pieces, sticky buy bar on mobile |
-| `#/drops` | Drop 01 (live early access + public countdown), drop 02 after dark (countdown + notify) |
+| `#/drops` | Drop 01 (live early access + public countdown), drop 02 after dark (countdown + notify), drop 03 iced out (live: ceo, the goat, jesus cross, jesus piece, skull ring, money stack) |
 | `#/bag` and the bag drawer | Line items, quantity (max 2 per drop piece), promo, totals, split-in-4 |
 | `#/checkout` | 3 steps: you, delivery (same day Dubai, UAE, GCC, gift option), payment (Apple Pay, card, split in 4) with validation |
 | `#/order/<id>` | Order confirmation |
@@ -63,7 +63,8 @@ These are placeholders and must be confirmed:
 1. **Prices, carat weights, stone counts, edition sizes and stock** in `assets/js/data.js`.
 2. **Dates** in `LAUNCH` and `DROPS` (`data.js`). The posters say `drop 01 · [date] · dubai`; the site uses 14 Nov 2026, 8pm Dubai.
 3. **Product claims**: natural vs lab-grown, colour/clarity grades (F-G / VS), the certificate (lab name, e.g. IGI or GIA), "solid 18k gold only", black diamond treatment wording, returns and delivery promises. The site currently says natural diamonds and a certificate in every box.
-4. **Photography**: the lifestyle shots (`assets/img/gz-*.webp`) are AI-generated with Figma AI: fictional young adults in plain, unbranded clothes, no logos. The jewellery in them is illustrative, so swap in your own shoot before launch. Product tiles use the rendered pieces from `jewel.js`. The bridal and colour-stone pieces (the old "vault") now live on infine.store only.
+4. **Drop 03 media**: the iced out pieces use your own product videos (`assets/video/ice-*.mp4`, trimmed, silent loops) and photos (`assets/img/ice-cross.webp`, `ice-jesus.webp`). Prices and edition sizes for these six are placeholders.
+5. **Photography**: the lifestyle shots (`assets/img/gz-*.webp`) are AI-generated with Figma AI: fictional young adults in plain, unbranded clothes, no logos. The jewellery in them is illustrative, so swap in your own shoot before launch. Product tiles use the rendered pieces from `jewel.js`. The bridal and colour-stone pieces (the old "vault") now live on infine.store only.
 5. **Contact**: WhatsApp number and `@infine` handle in `LAUNCH`.
 
 ## Connecting the real backend

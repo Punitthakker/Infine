@@ -1,8 +1,8 @@
 // Screen templates. Each view returns an HTML string; app.js wires behaviour.
-import { PRODUCTS, DROPS, CATEGORIES, LAUNCH, bySlug, fromPrice, dropOf, dropStatus, availability, earPartyFrom } from './data.js?v=202610180748';
-import { jewelSVG } from './jewel.js?v=202610180748';
-import { pixelDiamond, mascot, orbit, sparkle, ICON } from './brand.js?v=202610180748';
-import * as S from './store.js?v=202610180748';
+import { PRODUCTS, DROPS, CATEGORIES, LAUNCH, bySlug, fromPrice, dropOf, dropStatus, availability, earPartyFrom } from './data.js?v=202610180937';
+import { jewelSVG } from './jewel.js?v=202610180937';
+import { pixelDiamond, mascot, orbit, sparkle, ICON } from './brand.js?v=202610180937';
+import * as S from './store.js?v=202610180937';
 
 export const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const aed = n => 'AED ' + Math.round(n).toLocaleString('en-US');
@@ -10,10 +10,11 @@ const IMG = s => `assets/img/${s}.webp`;
 const shortDate = iso => new Date(iso).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', timeZone: 'Asia/Dubai' }).toLowerCase();
 
 export function media(m, label = '', eager = false) {
+  if (m.video) return `<video autoplay muted loop playsinline preload="${eager ? 'auto' : 'metadata'}" poster="${IMG(m.video)}" aria-label="${esc(label)}"><source src="assets/video/${m.video}.mp4" type="video/mp4"></video>`;
   if (m.img) return `<img src="${IMG(m.img)}" alt="${esc(label)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
   return jewelSVG(m.art, { bg: m.bg || 'ink', label });
 }
-const prodMedia = (p, eager) => media(p.img ? { img: p.img } : { art: p.art, bg: p.bg }, `${p.name}, ${p.type}`, eager);
+const prodMedia = (p, eager) => media(p.video ? { video: p.video } : p.img ? { img: p.img } : { art: p.art, bg: p.bg }, `${p.name}, ${p.type}`, eager);
 
 function badges(p) {
   const a = availability(p), out = [];
@@ -66,6 +67,7 @@ export function home() {
     ['necklaces', 'tennis necklaces', 'on-ink', { img: 'gz-pink-chains' }],
     ['ear', 'ear party', 'on-pink', { art: { kind: 'climber', stones: 'white' }, bg: 'pink' }],
     ['black', 'black diamonds', 'on-lilac', { art: { kind: 'necklace', stones: 'black' }, bg: 'lilac' }],
+    ['iced', 'iced out', 'on-ink', { video: 'ice-ceo' }],
     ['all', 'shop the squad', 'on-ink', { img: 'gz-squad' }],
   ].map(([id, l, c, m]) => `<a class="tile ${c}" href="#/shop/${id}">${media(m, l)}<b>${l}</b><small class="sticker ${c === 'on-ink' ? 'sticker--lime' : 'sticker--ink'}">${(id === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === id)).length} pieces</small></a>`).join('');
   return `
@@ -109,6 +111,12 @@ export function home() {
   <section class="sec on-ink"><div class="wrap sec__in">
     <div class="sec__head"><h2 class="d3">drop ${d1.no}</h2><a class="link" href="#/shop">shop all ${drop01.length}</a></div>
     <div class="rail">${drop01.map(p => card(p)).join('')}</div>
+  </div></section>
+
+  <section class="sec iced on-ink" aria-labelledby="ice"><div class="wrap sec__in">
+    <div class="sec__head"><div style="display:grid;gap:12px"><span class="sticker sticker--pink sticker--live">drop 03 · live now</span><h2 class="d2" id="ice">iced <span class="c-pink">out.</span></h2></div><a class="link" href="#/shop/iced">shop all ${PRODUCTS.filter(p => p.drop === 'drop-03').length}</a></div>
+    <p class="lede">${esc(DROPS.find(d => d.id === 'drop-03').line)}</p>
+    <div class="rail rail--tall">${PRODUCTS.filter(p => p.drop === 'drop-03').map(p => card(p)).join('')}</div>
   </div></section>
 
   <section class="on-lilac"><div class="wrap first" style="position:relative">
@@ -203,7 +211,7 @@ export function product(slug, sel = {}) {
   const d = dropOf(p), a = availability(p);
   const size = p.sizes.find(s => s.label === sel.size) || p.sizes[0];
   const metal = sel.metal || p.metals[0], length = sel.length || p.lengths[Math.min(1, p.lengths.length - 1)];
-  const slides = [{ img: p.img, art: p.art, bg: p.bg }, ...p.gallery];
+  const slides = [{ video: p.video, img: p.img, art: p.art, bg: p.bg }, ...p.gallery];
   const opt = (k, list, cur) => list.map(v => `<button class="opt" data-act="opt" data-k="${k}" data-v="${esc(v)}" aria-pressed="${v === cur}">${esc(v)}</button>`).join('');
   const sold = p.edition - p.left, pct = Math.round(sold / p.edition * 100);
   const cta = a === 'live'
@@ -258,7 +266,7 @@ export function product(slug, sel = {}) {
 }
 
 function bundle(p, size) {
-  const pairs = { bracelets: ['mini-line', 'ice-line', 'pave-huggie'], necklaces: ['ice-line', 'solo-stud'], ear: ['pave-huggie', 'orbit-climber', 'solo-stud'], black: ['onyx-studs', 'midnight-line'], vault: ['solo-stud', 'mini-line'] }[p.cat] || [];
+  const pairs = { bracelets: ['mini-line', 'ice-line', 'pave-huggie'], necklaces: ['ice-line', 'solo-stud'], ear: ['pave-huggie', 'orbit-climber', 'solo-stud'], black: ['onyx-studs', 'midnight-line'], iced: ['ice-line', 'midnight-line', 'skull-ring'] }[p.cat] || [];
   const q = pairs.map(bySlug).find(x => x && x.slug !== p.slug && availability(x) === 'live');
   if (!q || availability(p) !== 'live') return '';
   const tot = size.price + fromPrice(q);
@@ -273,7 +281,7 @@ function bundle(p, size) {
 export function drops() {
   const blk = d => {
     const st = dropStatus(d), ps = PRODUCTS.filter(p => p.drop === d.id);
-    const art = d.id === 'drop-01' ? pixelDiamond('pixdia') : jewelSVG({ kind: 'bracelet', stones: 'black' }, { bg: 'lilac' });
+    const art = d.id === 'drop-01' ? pixelDiamond('pixdia') : d.id === 'drop-03' ? `<div style="border-radius:22px;overflow:hidden;width:min(100%,320px);aspect-ratio:9/14">${media({ video: 'ice-goat' }, 'the goat pendant')}</div>` : jewelSVG({ kind: 'bracelet', stones: 'black' }, { bg: 'lilac' });
     const stTag = st === 'live' ? '<span class="sticker sticker--pink sticker--live">live</span>' : st === 'soon' ? `<span class="sticker sticker--white">opens ${shortDate(d.opens)}</span>` : '<span class="sticker sticker--ink">closed</span>';
     return `<article class="dropcard on-${d.bg}">
       <div class="dropcard__art">${art}</div>
@@ -283,7 +291,7 @@ export function drops() {
         ${d.publicAt && Date.now() < Date.parse(d.publicAt) ? `<p class="mono">public drop in</p>${clock(d.publicAt, 'time until public drop')}` : ''}
         ${st === 'soon' ? `<p class="mono">opens in</p>${clock(d.opens, 'time until drop opens')}` : ''}
         ${st === 'live' && d.id !== 'vault' ? dropMeter(d) : ''}
-        <div style="display:flex;gap:8px;flex-wrap:wrap">${st === 'soon' ? notifyForm(d.id) : `<a class="btn ${d.bg === 'ink' ? 'btn--lime' : 'btn--ink'}" href="#/shop/${d.id === 'drop-02' ? 'black' : d.id === 'vault' ? 'vault' : 'all'}">shop ${ps.length} pieces</a>`}</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">${st === 'soon' ? notifyForm(d.id) : `<a class="btn ${d.bg === 'ink' ? 'btn--lime' : 'btn--ink'}" href="#/shop/${d.id === 'drop-02' ? 'black' : d.id === 'drop-03' ? 'iced' : 'all'}">shop ${ps.length} pieces</a>`}</div>
       </div></article>`;
   };
   return `<div class="wrap" style="padding-bottom:72px">
@@ -470,7 +478,7 @@ export function notFound() {
 
 export function searchResults(q) {
   q = q.trim().toLowerCase();
-  if (!q) return `<div class="chips">${['tennis bracelet', 'black diamonds', 'ear party', 'necklace', 'emerald', 'first diamond'].map(s => `<button class="chip" data-act="q" data-q="${s}">${s}</button>`).join('')}</div>`;
+  if (!q) return `<div class="chips">${['tennis bracelet', 'black diamonds', 'iced', 'ear party', 'necklace', 'first diamond'].map(s => `<button class="chip" data-act="q" data-q="${s}">${s}</button>`).join('')}</div>`;
   const ps = PRODUCTS.filter(p => [p.name, p.type, p.cat, p.blurb, ...(p.tags || [])].join(' ').toLowerCase().includes(q));
   return ps.length ? `<p class="mono muted">${ps.length} result${ps.length > 1 ? 's' : ''}</p><div class="grid">${ps.map(p => card(p)).join('')}</div>` : `<p class="d4">no match for "${esc(q)}".</p><p class="muted">try "tennis", "black" or "ear party".</p>`;
 }
