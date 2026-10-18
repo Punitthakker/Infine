@@ -1,6 +1,6 @@
 // Screens for infine.store. Each returns an HTML string; app.js wires behaviour.
-import { PRODUCTS, CATEGORIES, BRAND, bySlug, inCat, catOf } from './data.js?v=202610181047';
-import * as S from './store.js?v=202610181047';
+import { PRODUCTS, CATEGORIES, BRAND, bySlug, inCat, catOf } from './data.js?v=202610181306';
+import * as S from './store.js?v=202610181306';
 
 export const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const aed = n => 'AED ' + Math.round(n).toLocaleString('en-US');
@@ -44,8 +44,11 @@ export function card(p, eager = false) {
 const SLIDES = [
   { img: 'dxb-emirati', place: 'The majlis, after dark', t: ['After dark', 'in Dubai.'], line: 'Candlelight, diamond drops and nowhere to be.', shop: ['halo-huggies', 'classic-tennis'] },
   { img: 'dxb-marina', place: 'Dubai Marina, blue hour', t: ['All eyes', 'on you.'], line: 'A riviera of diamonds, graduated to frame the collarbone.', shop: ['riviera', 'fringe-riviera'] },
-  { img: 'dxb-hand', place: 'The balcony', t: ['Yours,', 'not his.'], line: 'An oval that catches every light on the water.', shop: ['oval-whisper', 'classic-tennis'] },
-  { img: 'dxb-rooftop', place: 'Rooftop, city lights', t: ['Stay a little', 'longer.'], line: 'The city lights up. So do you.', shop: ['halo-huggies', 'trio-huggies'] },
+  { img: 'dxb-yacht', place: 'Dinner by the yachts', t: ['Raise', 'a glass.'], line: 'A tennis bracelet that catches every candle on the table.', shop: ['classic-tennis', 'bezel-tennis'] },
+  { img: 'dxb-golden', place: 'The promenade, golden hour', t: ['Golden', 'hour.'], line: 'Hoops that move when you do.', shop: ['baguette-hoops', 'classic-tennis'] },
+  { img: 'dxb-balcony', place: 'High above the city', t: ['Made to be', 'noticed.'], line: 'Velvet, city lights and a necklace that does the talking.', shop: ['pear-v', 'riviera'] },
+  { img: 'dxb-lebanese', place: 'Rooftop, after dinner', t: ['Stay a little', 'longer.'], line: 'Huggies and a cocktail ring for the nights you will talk about next year.', shop: ['trio-huggies', 'starlight-halo'] },
+  { img: 'dxb-solitaire', place: 'Candlelit, by the water', t: ['Yours,', 'not his.'], line: 'An oval that catches every light on the water.', shop: ['oval-whisper', 'the-promise'] },
 ];
 function slideshow() {
   const n = SLIDES.length, pad = i => String(i + 1).padStart(2, '0');
@@ -77,7 +80,7 @@ const cutoff = () => `<p class="cutoff"><span>Order within <b data-cutoff-t>--</
 export function home() {
   const rings = inCat('rings'), bands = inCat('bands'), hoops = inCat('earrings'), brc = inCat('bracelets'), neck = inCat('necklaces');
   const moods = [
-    ['necklaces', { img: 'dxb-marina', tone: 'photo' }, 'Necklaces'],
+    ['necklaces', { img: 'dxb-balcony', tone: 'photo' }, 'Necklaces'],
     ['rings', { img: 'ring-014', tone: 'dark' }, 'Rings'],
     ['earrings', { img: 'hoop-017', tone: 'light' }, 'Huggies & hoops'],
     ['bands', { img: 'band-1_11', tone: 'light' }, 'Stacking bands'],
@@ -87,7 +90,7 @@ export function home() {
   return `
   <section class="hero">
     <div class="hero__media">
-      <video autoplay muted loop playsinline preload="auto" poster="assets/video/hero-poster.jpg?v=202610181047" aria-hidden="true"><source src="assets/video/hero.mp4?v=202610181047" type="video/mp4"></video>
+      <video autoplay muted loop playsinline preload="auto" poster="assets/video/hero-poster.jpg?v=202610181306" aria-hidden="true"><source src="assets/video/hero.mp4?v=202610181306" type="video/mp4"></video>
     </div>
     <div class="wrap hero__in">
       <p class="kicker">${BRAND.edit} · ${BRAND.city}</p>
@@ -349,7 +352,7 @@ export function account() {
 
 /* ================= STORY / GUIDE ================= */
 export function story() {
-  return `<section class="hero" style="min-height:70vh"><div class="hero__media"><img src="${IMG('dxb-marina')}" alt=""></div>
+  return `<section class="hero" style="min-height:70vh"><div class="hero__media"><img src="${IMG('dxb-yacht')}" alt=""></div>
     <div class="wrap hero__in"><p class="kicker">Our story</p><h1 class="h-hero" style="font-size:clamp(56px,12vw,140px)"><span class="ln"><span>For the woman</span></span><span class="ln"><span>who knows.</span></span></h1></div></section>
   <section class="sec"><div class="wrap pair"><div class="prose">
     <p>infine. began with a simple idea: the most beautiful diamonds shouldn't wait for someone else to give them to you.</p>
