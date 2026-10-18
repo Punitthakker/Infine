@@ -1,8 +1,8 @@
 // Screen templates. Each view returns an HTML string; app.js wires behaviour.
-import { PRODUCTS, DROPS, CATEGORIES, LAUNCH, bySlug, fromPrice, dropOf, dropStatus, availability, earPartyFrom } from './data.js?v=202610180937';
-import { jewelSVG } from './jewel.js?v=202610180937';
-import { pixelDiamond, mascot, orbit, sparkle, ICON } from './brand.js?v=202610180937';
-import * as S from './store.js?v=202610180937';
+import { PRODUCTS, DROPS, CATEGORIES, LAUNCH, bySlug, fromPrice, dropOf, dropStatus, availability, earPartyFrom } from './data.js?v=202610181016';
+import { jewelSVG } from './jewel.js?v=202610181016';
+import { pixelDiamond, mascot, orbit, sparkle, ICON } from './brand.js?v=202610181016';
+import * as S from './store.js?v=202610181016';
 
 export const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const aed = n => 'AED ' + Math.round(n).toLocaleString('en-US');
@@ -60,7 +60,7 @@ export function home() {
   const d1 = DROPS[0], d2 = DROPS[1];
   const drop01 = PRODUCTS.filter(p => p.drop === 'drop-01');
   const ear = PRODUCTS.filter(p => p.cat === 'ear');
-  const stripImgs = ['gz-neon-stack', 'gz-kandura', 'gz-squad', 'gz-abaya', 'gz-pink-chains', 'gz-skater', 'gz-arms-yo', 'gz-mirror'];
+  const stripImgs = ['gz-skater', 'gz-kandura', 'gz-mirror', 'gz-squad', 'gz-pink-chains', 'gz-abaya', 'gz-neon-stack', 'gz-arms-yo'];
   const strip = stripImgs.map(s => `<figure><img src="${IMG(s)}" alt="" loading="lazy"></figure>`).join('');
   const tiles = [
     ['bracelets', 'tennis bracelets', 'on-lime', { art: { kind: 'bracelet', stones: 'white' }, bg: 'lime' }],
@@ -80,7 +80,7 @@ export function home() {
       </div>
       <div class="hero__side">
         <p class="mono hero__price">ear party<br>starts at<br><b>${aed(earPartyFrom())}</b></p>
-        <p class="lede">real diamonds in solid 18k gold, made to stack. limited drops out of ${LAUNCH.city}.</p>
+        <p class="lede">top-grade lab-grown diamonds in solid 18k gold, made to stack. limited drops out of ${LAUNCH.city}.</p>
         <div class="hero__ctas"><a class="btn btn--lime" href="#/shop">shop the drop</a><a class="btn btn--line" href="#/drops">see drops</a></div>
         <div class="fan" aria-label="drop 01 pieces">
           ${['ice-line', 'ice-line-necklace', 'pave-huggie'].map((sl, i) => { const q = bySlug(sl); return `<a class="fan__card" style="--i:${i}" href="#/p/${sl}">${prodMedia(q, true)}<span class="sticker">${esc(q.name)} · ${aed(fromPrice(q))}</span></a>`; }).join('')}
@@ -93,7 +93,7 @@ export function home() {
     </div>
   </section>
   <div class="strip on-ink" aria-hidden="true"><div class="strip__run">${strip}${strip}</div></div>
-  <div class="band on-pink" aria-hidden="true"><div class="band__run"><span>real diamonds</span><span>solid 18k gold</span><span>numbered editions</span><span>made in dubai</span><span>stack it</span><span>real diamonds</span><span>solid 18k gold</span><span>numbered editions</span><span>made in dubai</span><span>stack it</span></div></div>
+  <div class="band on-pink" aria-hidden="true"><div class="band__run"><span>lab-grown diamonds</span><span>solid 18k gold</span><span>numbered editions</span><span>made in dubai</span><span>stack it</span><span>lab-grown diamonds</span><span>solid 18k gold</span><span>numbered editions</span><span>made in dubai</span><span>stack it</span></div></div>
 
   <section class="dropblk on-lime" aria-labelledby="d01">
     <div class="wrap dropblk__in">
@@ -154,11 +154,11 @@ export function home() {
   </section>
 
   <section class="sec on-lime"><div class="wrap sec__in">
-    <h2 class="d3">real diamonds. real gold.<br>no drama.</h2>
+    <h2 class="d3">lab-grown diamonds.<br>real gold. no drama.</h2>
     <div class="proof">
-      <div><b>F-G / VS</b><span>white diamond colour and clarity, every piece</span></div>
+      <div><b>D-F / VVS</b><span>top-grade lab-grown colour and clarity, every stone</span></div>
       <div><b>18k</b><span>solid gold only. no plating, no vermeil</span></div>
-      <div><b>certified</b><span>a diamond certificate ships in the box</span></div>
+      <div><b>IGI certified</b><span>an IGI lab-grown diamond certificate ships in the box</span></div>
       <div><b>14 days</b><span>to change your mind. free returns in the uae</span></div>
     </div>
   </div></section>
@@ -166,7 +166,7 @@ export function home() {
   <section class="sec on-ink"><div class="wrap sec__in">
     <div class="sec__head"><h2 class="d3">how they <span class="c-lime">stack</span></h2><span class="mono muted">tap a look to shop it</span></div>
     <div class="stack">
-      ${[['gz-neon-stack', 'ice-line'], ['gz-arms-yo', 'midnight-line'], ['gz-kandura', 'salt-pepper-line'], ['gz-mirror', 'mini-line'], ['gz-pink-chains', 'midnight-necklace'], ['gz-abaya', 'rose-line']]
+      ${[['gz-skater', 'midnight-line'], ['gz-kandura', 'salt-pepper-line'], ['gz-mirror', 'mini-line'], ['gz-pink-chains', 'midnight-necklace'], ['gz-abaya', 'rose-line'], ['gz-neon-stack', 'ice-line']]
       .map(([i, s]) => `<a href="#/p/${s}"><figure><img src="${IMG(i)}" alt="${esc(bySlug(s).name)} styled" loading="lazy"><figcaption><span class="sticker">${esc(bySlug(s).name)}</span></figcaption></figure></a>`).join('')}
     </div>
   </div></section>
@@ -243,7 +243,7 @@ export function product(slug, sel = {}) {
       <div style="display:grid;gap:10px">${cta}
         <button class="btn btn--line btn--block btn--sm" data-act="wish" data-slug="${p.slug}" aria-pressed="${S.isWished(p.slug)}">${S.isWished(p.slug) ? 'saved' : 'save for later'}</button></div>
       <div class="perks">
-        <div>${ICON.truck}free same-day delivery in dubai</div><div>${ICON.cert}diamond certificate in the box</div>
+        <div>${ICON.truck}free same-day delivery in dubai</div><div>${ICON.cert}IGI certificate in the box</div>
         <div>${ICON.swap}14-day free returns</div><div>${ICON.gift}gift-ready box + note</div>
       </div>
       <table class="specs"><tbody>
@@ -442,14 +442,14 @@ export function story() {
       .map(([b, t], i) => `<div class="on-ink"><i class="c-lime">${i + 1}</i><div><b>${b}</b><p class="muted">${t}</p></div></div>`).join('')}
     </div></div></section>
   <section class="sec on-lilac"><div class="wrap sec__in"><h2 class="d3">what we won't do</h2>
-    <div class="cs">${[['plating', 'solid 18k gold only, so nothing turns green.'], ['mystery stones', 'every diamond is graded and certified.'], ['fake sales', 'our prices are our prices. no 70% off next week.'], ['restocks', 'numbered editions stay numbered.']].map(([b, t]) => `<div class="on-white"><b>no ${b}</b><p>${t}</p></div>`).join('')}</div>
+    <div class="cs">${[['plating', 'solid 18k gold only, so nothing turns green.'], ['mystery stones', 'every lab-grown diamond is IGI graded and certified.'], ['fake sales', 'our prices are our prices. no 70% off next week.'], ['restocks', 'numbered editions stay numbered.']].map(([b, t]) => `<div class="on-white"><b>no ${b}</b><p>${t}</p></div>`).join('')}</div>
   </div></section>`;
 }
 
 export function guide() {
   const faqs = [
-    ['are they real diamonds?', 'yes. natural diamonds, graded for colour and clarity, set in solid 18k gold. a certificate ships with every piece.'],
-    ['what are black diamonds?', 'natural diamonds with so many dark inclusions they turn opaque. most are colour treated to get an even black, and we say so on every product page.'],
+    ['are lab-grown diamonds real diamonds?', 'yes. same carbon crystal, same hardness, same fire as a mined diamond, just grown in a lab instead of dug out of the ground. ours are top grade: D-F colour, VVS clarity, excellent cut, set in solid 18k gold, with an IGI certificate in every box.'],
+    ['what are black diamonds?', 'lab-grown diamonds made deep, even black so they read like onyx until they catch the light. same hardness as white diamonds, and every piece says so on the product page.'],
     ['how do i pick a bracelet length?', 'measure your wrist snugly and add about 1.5 cm for a tennis bracelet. use the sizer above if you\'re unsure.'],
     ['can i wear it every day?', 'that\'s the idea. take it off for the gym, the pool and the beach, and bring it in once a year for a free prong check and clean.'],
     ['do you ship outside the uae?', 'yes, across the gcc in 3-5 days, insured. duties are shown before you pay.'],
@@ -457,7 +457,7 @@ export function guide() {
   ];
   return `<div class="wrap" style="padding-bottom:72px;display:grid;gap:12px">
     <header class="pagehead"><p class="handle c-lime">${LAUNCH.handle}</p><h1 class="d2">diamond 101</h1><p class="lede">everything you need to buy your first one without asking your mom.</p></header>
-    <div class="cs">${[['cut', 'how well it\'s cut decides how much it sparkles. ours are excellent round brilliants.', 'on-lime'], ['colour', 'D is ice white. we use F-G: bright white, without the D price.', 'on-lilac'], ['clarity', 'tiny inclusions you can\'t see without a loupe. ours are VS.', 'on-pink'], ['carat', 'total weight of all the stones. 1 ct on a bracelet is about 60 little diamonds.', 'on-white']]
+    <div class="cs">${[['cut', 'how well it\'s cut decides how much it sparkles. ours are excellent round brilliants.', 'on-lime'], ['colour', 'D is ice white. ours are D-F: the colourless top of the scale.', 'on-lilac'], ['clarity', 'how clean the stone is inside. ours are VVS: clean even under a loupe.', 'on-pink'], ['carat', 'total weight of all the stones. 1 ct on a bracelet is about 60 little diamonds.', 'on-white']]
     .map(([b, t, c]) => `<div class="${c}"><b>${b}</b><p>${t}</p></div>`).join('')}</div>
     <section class="sec on-lime" style="border-radius:30px;padding:28px 20px;margin-top:16px"><div class="sizer">
       <h2 class="d3">bracelet sizer</h2>

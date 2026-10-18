@@ -1,6 +1,6 @@
 # infine.
 
-Launch storefront for **infine**, real diamonds in solid 18k gold for Gen Z, sold in limited numbered drops out of Dubai.
+Launch storefront for **infine**, top-grade lab-grown diamonds in solid 18k gold for Gen Z, sold in limited numbered drops out of Dubai.
 Drop 01: *main character energy*.
 
 Mobile-first, static, zero build step. Plain HTML, CSS and ES modules, so it deploys anywhere that serves files.
@@ -62,7 +62,7 @@ These are placeholders and must be confirmed:
 
 1. **Prices, carat weights, stone counts, edition sizes and stock** in `assets/js/data.js`.
 2. **Dates** in `LAUNCH` and `DROPS` (`data.js`). The posters say `drop 01 · [date] · dubai`; the site uses 14 Nov 2026, 8pm Dubai.
-3. **Product claims**: natural vs lab-grown, colour/clarity grades (F-G / VS), the certificate (lab name, e.g. IGI or GIA), "solid 18k gold only", black diamond treatment wording, returns and delivery promises. The site currently says natural diamonds and a certificate in every box.
+3. **Product claims**: the site says top-grade lab-grown diamonds (D-F colour, VVS clarity, excellent cut) with an IGI certificate in every box, black diamonds also lab-grown. Confirm these grades and the lab with your supplier, plus "solid 18k gold only", returns and delivery promises.
 4. **Drop 03 media**: the iced out pieces use your own product videos (`assets/video/ice-*.mp4`, trimmed, silent loops) and photos (`assets/img/ice-cross.webp`, `ice-jesus.webp`). Prices and edition sizes for these six are placeholders.
 5. **Photography**: the lifestyle shots (`assets/img/gz-*.webp`) are AI-generated with Figma AI: fictional young adults in plain, unbranded clothes, no logos. The jewellery in them is illustrative, so swap in your own shoot before launch. Product tiles use the rendered pieces from `jewel.js`. The bridal and colour-stone pieces (the old "vault") now live on infine.store only.
 5. **Contact**: WhatsApp number and `@infine` handle in `LAUNCH`.

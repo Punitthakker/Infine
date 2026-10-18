@@ -1,4 +1,5 @@
 // infine. catalogue, drops and launch config.
+// All diamonds are top-grade lab-grown (D-F colour, VVS clarity, IGI certified).
 // PLACEHOLDER DATA: prices, carat weights, stone counts, edition sizes, stock and dates are
 // launch placeholders. Confirm every figure before going live (see README > Before launch).
 
@@ -23,7 +24,7 @@ export const PRODUCTS = [
     art: { kind: 'bracelet', stones: 'white' }, gallery: [{ img: 'gz-neon-stack' }, { art: { kind: 'line', stones: 'white' }, bg: 'lime' }, { art: { kind: 'bracelet', stones: 'white', angle: 1 }, bg: 'lilac' }],
     sizes: [{ label: '2 ct', price: 8900, stones: 52 }, { label: '3 ct', price: 12500, stones: 46 }, { label: '5 ct', price: 19900, stones: 40 }],
     metals: ['18k white gold', '18k yellow gold', '18k rose gold'], lengths: ['6"', '6.5"', '7"'],
-    edition: 60, left: 23, specs: { colour: 'F-G', clarity: 'VS', cut: 'round brilliant, excellent', setting: '4-prong, box clasp + safety' }, tags: ['bestseller'],
+    edition: 60, left: 23, specs: { colour: 'D-F, lab-grown', clarity: 'VVS', cut: 'round brilliant, excellent', setting: '4-prong, box clasp + safety' }, tags: ['bestseller'],
   },
   {
     slug: 'mini-line', name: 'mini line', type: 'tennis bracelet', cat: 'bracelets', drop: 'drop-01', bg: 'lilac',
@@ -31,7 +32,7 @@ export const PRODUCTS = [
     art: { kind: 'bracelet', stones: 'white', fine: 1 }, gallery: [{ img: 'gz-mirror' }, { art: { kind: 'line', stones: 'white', fine: 1 }, bg: 'ink' }],
     sizes: [{ label: '1 ct', price: 4200, stones: 64 }, { label: '1.5 ct', price: 5900, stones: 58 }],
     metals: ['18k white gold', '18k yellow gold', '18k rose gold'], lengths: ['6"', '6.5"', '7"'],
-    edition: 80, left: 31, specs: { colour: 'F-G', clarity: 'VS', cut: 'round brilliant, excellent', setting: '4-prong, box clasp + safety' }, tags: ['first diamond'],
+    edition: 80, left: 31, specs: { colour: 'D-F, lab-grown', clarity: 'VVS', cut: 'round brilliant, excellent', setting: '4-prong, box clasp + safety' }, tags: ['first diamond'],
   },
   {
     slug: 'rose-line', name: 'rose line', type: 'tennis bracelet', cat: 'bracelets', drop: 'drop-01', bg: 'pink',
@@ -39,7 +40,7 @@ export const PRODUCTS = [
     art: { kind: 'bracelet', stones: 'rose' }, gallery: [{ img: 'gz-abaya' }, { art: { kind: 'line', stones: 'rose' }, bg: 'ink' }],
     sizes: [{ label: '1.5 ct', price: 6900, stones: 56 }, { label: '3 ct', price: 12900, stones: 46 }],
     metals: ['18k rose gold'], lengths: ['6"', '6.5"', '7"'],
-    edition: 40, left: 9, specs: { colour: 'F-G', clarity: 'VS', cut: 'round brilliant, excellent', setting: '4-prong, box clasp + safety' },
+    edition: 40, left: 9, specs: { colour: 'D-F, lab-grown', clarity: 'VVS', cut: 'round brilliant, excellent', setting: '4-prong, box clasp + safety' },
   },
   {
     slug: 'baguette-line', name: 'baguette line', type: 'tennis bracelet', cat: 'bracelets', drop: 'drop-01', bg: 'lime',
@@ -47,7 +48,7 @@ export const PRODUCTS = [
     art: { kind: 'bracelet', stones: 'baguette' }, gallery: [{ img: 'gz-skater' }, { art: { kind: 'line', stones: 'baguette' }, bg: 'ink' }],
     sizes: [{ label: '4 ct', price: 14900, stones: 38 }, { label: '6 ct', price: 21500, stones: 34 }],
     metals: ['18k white gold', '18k yellow gold'], lengths: ['6.5"', '7"'],
-    edition: 30, left: 6, specs: { colour: 'F-G', clarity: 'VS', cut: 'baguette, step cut', setting: 'channel set, box clasp + safety' },
+    edition: 30, left: 6, specs: { colour: 'D-F, lab-grown', clarity: 'VVS', cut: 'baguette, step cut', setting: 'channel set, box clasp + safety' },
   },
   // ---------- tennis necklaces (drop 01) ----------
   {
@@ -56,7 +57,7 @@ export const PRODUCTS = [
     art: { kind: 'necklace', stones: 'white' }, gallery: [{ img: 'gz-squad' }, { art: { kind: 'line', stones: 'white' }, bg: 'lilac' }],
     sizes: [{ label: '8 ct', price: 29000, stones: 96 }, { label: '12 ct', price: 41000, stones: 88 }],
     metals: ['18k white gold', '18k yellow gold'], lengths: ['16"', '17"'],
-    edition: 25, left: 7, specs: { colour: 'F-G', clarity: 'VS', cut: 'round brilliant, excellent', setting: '4-prong, box clasp + safety' }, tags: ['bestseller'],
+    edition: 25, left: 7, specs: { colour: 'D-F, lab-grown', clarity: 'VVS', cut: 'round brilliant, excellent', setting: '4-prong, box clasp + safety' }, tags: ['bestseller'],
   },
   {
     slug: 'triple-line', name: 'triple line', type: 'tennis necklace', cat: 'necklaces', drop: 'drop-01', bg: 'ink',
@@ -64,7 +65,7 @@ export const PRODUCTS = [
     art: { kind: 'necklace', stones: 'baguette' }, gallery: [{ img: 'gz-pink-chains' }, { art: { kind: 'line', stones: 'baguette' }, bg: 'lime' }],
     sizes: [{ label: '18 ct', price: 64000, stones: 212 }],
     metals: ['18k white gold'], lengths: ['16" / 17" / 18"'],
-    edition: 10, left: 3, specs: { colour: 'F-G', clarity: 'VS', cut: 'round brilliant + baguette', setting: '4-prong + channel' },
+    edition: 10, left: 3, specs: { colour: 'D-F, lab-grown', clarity: 'VVS', cut: 'round brilliant + baguette', setting: '4-prong + channel' },
   },
   {
     slug: 'fringe-line', name: 'fringe line', type: 'tennis necklace', cat: 'necklaces', drop: 'drop-01', bg: 'ink',
@@ -72,7 +73,7 @@ export const PRODUCTS = [
     art: { kind: 'necklace', stones: 'white', angle: 1 }, gallery: [{ img: 'gz-mirror' }, { art: { kind: 'line', stones: 'white' }, bg: 'pink' }],
     sizes: [{ label: '14 ct', price: 38000, stones: 154 }],
     metals: ['18k white gold'], lengths: ['16" + 17"'],
-    edition: 12, left: 4, specs: { colour: 'F-G', clarity: 'VS', cut: 'round, pear, baguette', setting: 'prong + bezel drops' },
+    edition: 12, left: 4, specs: { colour: 'D-F, lab-grown', clarity: 'VVS', cut: 'round, pear, baguette', setting: 'prong + bezel drops' },
   },
   // ---------- ear party (drop 01) ----------
   {
@@ -81,7 +82,7 @@ export const PRODUCTS = [
     art: { kind: 'studs', stones: 'white', single: 1 }, gallery: [{ art: { kind: 'studs', stones: 'white' }, bg: 'ink' }],
     sizes: [{ label: '0.25 ct', price: 1450, stones: 1 }, { label: '0.5 ct', price: 2600, stones: 1 }],
     metals: ['18k white gold', '18k yellow gold', '18k rose gold'], lengths: ['single', 'pair'],
-    edition: 150, left: 88, specs: { colour: 'F-G', clarity: 'VS', cut: 'round brilliant', setting: '4-prong martini, screw back' }, tags: ['ear party'],
+    edition: 150, left: 88, specs: { colour: 'D-F, lab-grown', clarity: 'VVS', cut: 'round brilliant', setting: '4-prong martini, screw back' }, tags: ['ear party'],
   },
   {
     slug: 'pave-huggie', name: 'pavé huggie', type: 'huggie hoop', cat: 'ear', drop: 'drop-01', bg: 'pink',
@@ -89,7 +90,7 @@ export const PRODUCTS = [
     art: { kind: 'huggies', stones: 'white' }, gallery: [{ art: { kind: 'huggies', stones: 'white' }, bg: 'ink' }],
     sizes: [{ label: '0.2 ct single', price: 1650, stones: 18 }, { label: '0.4 ct pair', price: 2950, stones: 36 }],
     metals: ['18k white gold', '18k yellow gold'], lengths: ['8 mm', '10 mm'],
-    edition: 120, left: 64, specs: { colour: 'F-G', clarity: 'VS', cut: 'round brilliant pavé', setting: 'micro pavé, hinged' }, tags: ['ear party'],
+    edition: 120, left: 64, specs: { colour: 'D-F, lab-grown', clarity: 'VVS', cut: 'round brilliant pavé', setting: 'micro pavé, hinged' }, tags: ['ear party'],
   },
   {
     slug: 'orbit-climber', name: 'orbit climber', type: 'ear climber', cat: 'ear', drop: 'drop-01', bg: 'ink',
@@ -97,7 +98,7 @@ export const PRODUCTS = [
     art: { kind: 'climber', stones: 'white' }, gallery: [{ art: { kind: 'climber', stones: 'saltpepper' }, bg: 'lime' }],
     sizes: [{ label: '0.6 ct single', price: 2400, stones: 9 }],
     metals: ['18k white gold', '18k yellow gold'], lengths: ['left', 'right'],
-    edition: 80, left: 27, specs: { colour: 'F-G', clarity: 'VS', cut: 'round brilliant, graduated', setting: '4-prong, push back' }, tags: ['ear party'],
+    edition: 80, left: 27, specs: { colour: 'D-F, lab-grown', clarity: 'VVS', cut: 'round brilliant, graduated', setting: '4-prong, push back' }, tags: ['ear party'],
   },
   // ---------- black diamonds (drop 02 · after dark) ----------
   {
@@ -106,7 +107,7 @@ export const PRODUCTS = [
     art: { kind: 'bracelet', stones: 'black' }, gallery: [{ img: 'gz-arms-yo' }, { art: { kind: 'line', stones: 'black' }, bg: 'lime' }],
     sizes: [{ label: '3 ct', price: 6400, stones: 46 }, { label: '5 ct', price: 9800, stones: 40 }],
     metals: ['18k black rhodium', '18k yellow gold'], lengths: ['6"', '6.5"', '7"'],
-    edition: 50, left: 50, specs: { colour: 'black (natural, colour treated)', clarity: 'opaque', cut: 'round brilliant', setting: '4-prong, box clasp + safety' }, tags: ['drop 02'],
+    edition: 50, left: 50, specs: { colour: 'black, lab-grown', clarity: 'opaque', cut: 'round brilliant', setting: '4-prong, box clasp + safety' }, tags: ['drop 02'],
   },
   {
     slug: 'salt-pepper-line', name: 'salt & pepper', type: 'tennis bracelet', cat: 'black', drop: 'drop-02', bg: 'pink',
@@ -114,7 +115,7 @@ export const PRODUCTS = [
     art: { kind: 'bracelet', stones: 'saltpepper' }, gallery: [{ img: 'gz-fistbump' }, { img: 'gz-kandura' }, { art: { kind: 'line', stones: 'saltpepper' }, bg: 'ink' }],
     sizes: [{ label: '3 ct', price: 7800, stones: 46 }],
     metals: ['18k white gold', '18k black rhodium'], lengths: ['6"', '6.5"', '7"'],
-    edition: 40, left: 40, specs: { colour: 'F-G white / black', clarity: 'VS / opaque', cut: 'round brilliant', setting: '4-prong, box clasp + safety' }, tags: ['drop 02'],
+    edition: 40, left: 40, specs: { colour: 'D-F white / black, lab-grown', clarity: 'VVS / opaque', cut: 'round brilliant', setting: '4-prong, box clasp + safety' }, tags: ['drop 02'],
   },
   {
     slug: 'midnight-necklace', name: 'midnight necklace', type: 'tennis necklace', cat: 'black', drop: 'drop-02', bg: 'lime',
@@ -122,7 +123,7 @@ export const PRODUCTS = [
     art: { kind: 'necklace', stones: 'black' }, gallery: [{ img: 'gz-pink-chains' }, { art: { kind: 'line', stones: 'black' }, bg: 'ink' }],
     sizes: [{ label: '11 ct', price: 18500, stones: 92 }],
     metals: ['18k black rhodium', '18k yellow gold'], lengths: ['16"', '17"'],
-    edition: 20, left: 20, specs: { colour: 'black (natural, colour treated)', clarity: 'opaque', cut: 'round brilliant', setting: '4-prong, box clasp + safety' }, tags: ['drop 02'],
+    edition: 20, left: 20, specs: { colour: 'black, lab-grown', clarity: 'opaque', cut: 'round brilliant', setting: '4-prong, box clasp + safety' }, tags: ['drop 02'],
   },
   {
     slug: 'onyx-studs', name: 'onyx studs', type: 'stud earrings', cat: 'black', drop: 'drop-02', bg: 'ink',
@@ -130,7 +131,7 @@ export const PRODUCTS = [
     art: { kind: 'studs', stones: 'black' }, gallery: [{ art: { kind: 'studs', stones: 'saltpepper' }, bg: 'lilac' }],
     sizes: [{ label: '1 ct pair', price: 2900, stones: 2 }, { label: '2 ct pair', price: 4900, stones: 2 }],
     metals: ['18k black rhodium', '18k yellow gold'], lengths: ['push back'],
-    edition: 100, left: 100, specs: { colour: 'black (natural, colour treated)', clarity: 'opaque', cut: 'round brilliant', setting: '4-prong martini' }, tags: ['drop 02'],
+    edition: 100, left: 100, specs: { colour: 'black, lab-grown', clarity: 'opaque', cut: 'round brilliant', setting: '4-prong martini' }, tags: ['drop 02'],
   },
   // ---------- iced out (drop 03) ----------
   {
@@ -139,7 +140,7 @@ export const PRODUCTS = [
     video: 'ice-ceo', gallery: [],
     sizes: [{ label: 'pendant', price: 18500, stones: 180 }, { label: 'pendant + rope chain', price: 23900, stones: 180 }],
     metals: ['18k white gold', '18k yellow gold'], lengths: ['20"', '22"', '24"'],
-    edition: 15, left: 9, specs: { colour: 'F-G', clarity: 'VS', cut: 'baguette + round brilliant', setting: 'channel + prong' }, tags: ['drop 03'],
+    edition: 15, left: 9, specs: { colour: 'D-F, lab-grown', clarity: 'VVS', cut: 'baguette + round brilliant', setting: 'channel + prong' }, tags: ['drop 03'],
   },
   {
     slug: 'goat-pendant', name: 'the goat', type: 'iced pendant', cat: 'iced', drop: 'drop-03', bg: 'ink',
@@ -147,28 +148,28 @@ export const PRODUCTS = [
     video: 'ice-goat', gallery: [],
     sizes: [{ label: 'pendant', price: 16900, stones: 420 }, { label: 'pendant + tennis chain', price: 27900, stones: 516 }],
     metals: ['18k white gold', '18k yellow gold'], lengths: ['20"', '22"'],
-    edition: 12, left: 7, specs: { colour: 'F-G', clarity: 'VS', cut: 'round brilliant pavé', setting: 'micro pavé' }, tags: ['drop 03'],
+    edition: 12, left: 7, specs: { colour: 'D-F, lab-grown', clarity: 'VVS', cut: 'round brilliant pavé', setting: 'micro pavé' }, tags: ['drop 03'],
   },
   {
     slug: 'jesus-cross', name: 'jesus cross', type: 'iced pendant', cat: 'iced', drop: 'drop-03', bg: 'ink',
     blurb: 'a hand-sculpted face on a pavé cross, with blue and red marquise accents. heavy in the hand, heavier on the chain.',
     img: 'ice-cross', gallery: [],
     sizes: [{ label: 'pendant', price: 26500, stones: 640 }], metals: ['18k rose gold', '18k yellow gold'], lengths: ['22"', '24"'],
-    edition: 8, left: 5, specs: { colour: 'F-G diamonds, blue + red accents', clarity: 'VS', cut: 'round pavé + marquise', setting: 'pavé + prong' }, tags: ['drop 03'],
+    edition: 8, left: 5, specs: { colour: 'D-F lab-grown diamonds, blue + red accents', clarity: 'VVS', cut: 'round pavé + marquise', setting: 'pavé + prong' }, tags: ['drop 03'],
   },
   {
     slug: 'jesus-piece', name: 'jesus piece', type: 'iced pendant', cat: 'iced', drop: 'drop-03', bg: 'ink',
     blurb: 'the classic piece: a sculpted gold face, iced crown and beard, framed in blue and red stones.',
     img: 'ice-jesus', gallery: [],
     sizes: [{ label: 'pendant', price: 21500, stones: 520 }], metals: ['18k yellow gold'], lengths: ['22"', '24"'],
-    edition: 8, left: 4, specs: { colour: 'F-G diamonds, blue + red accents', clarity: 'VS', cut: 'round pavé', setting: 'pavé + prong' }, tags: ['drop 03'],
+    edition: 8, left: 4, specs: { colour: 'D-F lab-grown diamonds, blue + red accents', clarity: 'VVS', cut: 'round pavé', setting: 'pavé + prong' }, tags: ['drop 03'],
   },
   {
     slug: 'skull-ring', name: 'skull ring', type: 'iced ring', cat: 'iced', drop: 'drop-03', bg: 'ink',
     blurb: 'a full pavé skull that wraps the finger. comes in iced white or yellow gold.',
     video: 'ice-skull', gallery: [],
     sizes: [{ label: 'one ring', price: 9800, stones: 260 }], metals: ['18k white gold', '18k yellow gold'], lengths: ['US 8', 'US 9', 'US 10', 'US 11', 'US 12'],
-    edition: 20, left: 12, specs: { colour: 'F-G', clarity: 'VS', cut: 'round brilliant pavé', setting: 'micro pavé' }, tags: ['drop 03'],
+    edition: 20, left: 12, specs: { colour: 'D-F, lab-grown', clarity: 'VVS', cut: 'round brilliant pavé', setting: 'micro pavé' }, tags: ['drop 03'],
   },
   {
     slug: 'money-stack', name: 'money stack', type: 'ring stack', cat: 'iced', drop: 'drop-03', bg: 'ink',
@@ -176,7 +177,7 @@ export const PRODUCTS = [
     video: 'ice-stack', gallery: [],
     sizes: [{ label: 'dollar ring', price: 8900, stones: 96 }, { label: 'eye ring', price: 6400, stones: 120 }, { label: 'full stack (3)', price: 19900, stones: 336 }],
     metals: ['18k white gold', '18k yellow gold'], lengths: ['US 6', 'US 7', 'US 8', 'US 9', 'US 10'],
-    edition: 20, left: 14, specs: { colour: 'F-G', clarity: 'VS', cut: 'baguette + round brilliant', setting: 'channel + pavé' }, tags: ['drop 03'],
+    edition: 20, left: 14, specs: { colour: 'D-F, lab-grown', clarity: 'VVS', cut: 'baguette + round brilliant', setting: 'channel + pavé' }, tags: ['drop 03'],
   },
 ];
 

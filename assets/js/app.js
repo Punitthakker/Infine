@@ -1,8 +1,8 @@
 // infine. storefront: hash router, chrome (header, tabs, bag drawer, search), interactions.
-import { LAUNCH, bySlug, PROMOS } from './data.js?v=202610180937';
-import { ICON } from './brand.js?v=202610180937';
-import * as V from './views.js?v=202610180937';
-import * as S from './store.js?v=202610180937';
+import { LAUNCH, bySlug, PROMOS } from './data.js?v=202610181016';
+import { ICON } from './brand.js?v=202610181016';
+import * as V from './views.js?v=202610181016';
+import * as S from './store.js?v=202610181016';
 
 const $ = (s, r = document) => r.querySelector(s);
 const app = $('#app');
@@ -14,7 +14,7 @@ let coStep = 1; const coForm = {};
 function chrome() {
   const n = S.totals().count, w = S.wish().length;
   $('#chrome-top').innerHTML = `
-  <div class="ticker" aria-label="announcements"><div class="ticker__run">${Array(2).fill(`<span>drop 01: main character energy</span><span>early access open now</span><span>public drop ${new Date(LAUNCH.publicDrop).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', timeZone: 'Asia/Dubai' }).toLowerCase()}, 8pm dubai</span><span>free same-day delivery in dubai</span><span>real diamonds, solid 18k gold</span>`).join('')}</div></div>
+  <div class="ticker" aria-label="announcements"><div class="ticker__run">${Array(2).fill(`<span>drop 01: main character energy</span><span>early access open now</span><span>public drop ${new Date(LAUNCH.publicDrop).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', timeZone: 'Asia/Dubai' }).toLowerCase()}, 8pm dubai</span><span>free same-day delivery in dubai</span><span>lab-grown diamonds, solid 18k gold</span>`).join('')}</div></div>
   <header class="hdr"><div class="wrap hdr__in">
     <a class="logo" href="#/" aria-label="infine home">infine<i>.</i></a>
     <nav class="nav" aria-label="main">${[['#/shop', 'shop', 'shop'], ['#/drops', 'drops', 'drops'], ['#/shop/iced', 'iced out', 'iced'], ['#/shop/black', 'black diamonds', 'black'], ['#/story', 'story', 'story'], ['#/guide', 'diamond 101', 'guide']]
@@ -43,7 +43,7 @@ function footer() {
       <div><h4>follow</h4><span style="display:block;padding:5px 0">${LAUNCH.handle}</span><span class="mono small muted">instagram · tiktok</span></div>
     </div>
     <div class="foot__mark" aria-hidden="true">infine<i>.</i></div>
-    <p class="mono small muted">© ${new Date().getFullYear()} infine. real diamonds, solid 18k gold. dubai, uae.</p>
+    <p class="mono small muted">© ${new Date().getFullYear()} infine. lab-grown diamonds, solid 18k gold. dubai, uae.</p>
   </div></footer>`;
 }
 
@@ -64,7 +64,7 @@ function render(scrollTop = true) {
     story: () => V.story(), guide: () => V.guide(), 404: () => V.notFound(),
   }[r.name]();
   app.innerHTML = html + footer();
-  const titles = { home: 'infine. real diamonds, new rules', shop: 'shop', product: bySlug(a[0])?.name, drops: 'drops', bag: 'bag', checkout: 'checkout', done: 'order confirmed', saved: 'saved', account: 'account', story: 'story', guide: 'diamond 101', 404: 'not found' };
+  const titles = { home: 'infine. lab-grown diamonds, new rules', shop: 'shop', product: bySlug(a[0])?.name, drops: 'drops', bag: 'bag', checkout: 'checkout', done: 'order confirmed', saved: 'saved', account: 'account', story: 'story', guide: 'diamond 101', 404: 'not found' };
   document.title = r.name === 'home' ? titles.home : `${titles[r.name] || 'infine'} | infine.`;
   markNav(); tick(); wire();
   if (scrollTop) window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
