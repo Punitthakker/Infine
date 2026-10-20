@@ -1,8 +1,9 @@
 // infine. storefront: hash router, chrome (header, tabs, bag drawer, search), interactions.
-import { LAUNCH, bySlug, PROMOS } from './data.js?v=202610181306';
-import { ICON } from './brand.js?v=202610181306';
-import * as V from './views.js?v=202610181306';
-import * as S from './store.js?v=202610181306';
+import { LAUNCH, bySlug, PROMOS } from './data.js?v=202610201241';
+import { ICON } from './brand.js?v=202610201241';
+import * as V from './views.js?v=202610201241';
+import * as S from './store.js?v=202610201241';
+import * as C from './commerce.js?v=202610201241';
 
 const $ = (s, r = document) => r.querySelector(s);
 const app = $('#app');
@@ -200,7 +201,7 @@ document.addEventListener('submit', e => {
       if (!data.addr?.trim() || !data.area?.trim()) return fail('add the building, street and area.');
       data.gift = !!data.gift;
     }
-    if (step === 3 && data.pay === 'card') {
+    if (step === 3 && data.pay === 'card' && !C.live()) {
       if ((data.cardno || '').replace(/\D/g, '').length < 15) return fail('the card number is too short.');
       if (!/^\d{2}\s*\/\s*\d{2}$/.test(data.exp || '')) return fail('expiry should look like 08 / 29.');
       if (!/^\d{3,4}$/.test(data.cvc || '')) return fail('the cvc is the 3 or 4 digits on the back.');
@@ -208,8 +209,12 @@ document.addEventListener('submit', e => {
     Object.assign(coForm, data, { cardno: '', cvc: '' });
     if (step < 3) { coStep = step + 1; render(); return; }
     const shipCost = { dxb: 0, uae: 0, gcc: 75 }[coForm.ship || 'dxb'];
-    const o = S.placeOrder({ first: coForm.first, email: coForm.email, phone: coForm.phone, ship: coForm.ship, shipCost, gift: coForm.gift, pay: data.pay });
-    coStep = 1; location.hash = '#/order/' + o.id;
+    const details = { first: coForm.first, email: coForm.email, phone: coForm.phone, ship: coForm.ship, shipCost, gift: coForm.gift, pay: data.pay };
+    if (!C.live()) { const o = S.placeOrder(details); coStep = 1; location.hash = '#/order/' + o.id; return; }
+    const btn = f.querySelector('button[type="submit"]'); btn.disabled = true; btn.dataset.label = btn.innerHTML; btn.textContent = 'placing your order...';
+    C.checkout(S.bag(), coForm, S.totals().code)
+      .then(remote => { const o = S.placeOrder(details, remote); coStep = 1; location.hash = '#/order/' + o.id; C.sync().catch(() => {}); })
+      .catch(x => { btn.disabled = false; btn.innerHTML = btn.dataset.label; fail(x.message || 'something went wrong. try again or message us on whatsapp.'); });
   }
 });
 
@@ -231,3 +236,4 @@ addEventListener('pointermove', e => {
   el.hidden = false; setTimeout(() => el.classList.add('out'), 1500); setTimeout(() => el.remove(), 2100);
 })();
 chrome(); render(false);
+C.sync().then(ok => { if (ok) render(false); }).catch(e => console.warn('infine: live catalogue unavailable, showing built-in data.', e));

@@ -85,3 +85,8 @@ The front end is complete; the pieces below are demo stand-ins.
 - Mobile-first with an app-style bottom tab bar; desktop gets the top nav.
 - Visible keyboard focus everywhere, `prefers-reduced-motion` turns off all animation, form errors are announced.
 - Images are webp, lazy-loaded below the fold. Total page weight is mostly photography (~2 MB for the whole catalogue).
+
+
+## Shop backend
+
+The shop backend is **Medusa** (branch `medusa-backend` of this repo, see its README). Put its URL and publishable key in `assets/js/config.js` and redeploy: checkout then creates real orders in the Medusa admin, and live prices and edition stock flow into the site. With `config.js` blank, the site runs in demo mode.

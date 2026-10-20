@@ -1,6 +1,6 @@
 // Client-side state: bag, wishlist, orders, drop alerts. localStorage when available,
-// in-memory otherwise (private windows, embedded previews). Swap for a real backend later.
-import { bySlug, PROMOS } from './data.js?v=202610181306';
+// in-memory otherwise (private windows, embedded previews). Real orders go through commerce.js (Medusa).
+import { bySlug, PROMOS } from './data.js?v=202610201241';
 
 const mem = {};
 const read = (k, d) => { try { const v = localStorage.getItem('infine:' + k); return v ? JSON.parse(v) : (mem[k] ?? d); } catch { return mem[k] ?? d; } };
@@ -49,8 +49,8 @@ export const me = () => read('me', null);
 export const signIn = (name, email) => { write('me', { name, email }); emit(); };
 export const signOut = () => { write('me', null); emit(); };
 export const orders = () => read('orders', []);
-export function placeOrder(details) {
-  const t = totals(); const id = 'INF-' + String(Date.now()).slice(-6);
+export function placeOrder(details, remote = null) {
+  const t = totals(); const id = remote?.id || 'INF-' + String(Date.now()).slice(-6);
   const order = { id, at: Date.now(), items: bag(), ...t, details };
   write('orders', [order, ...orders()]); write('promo', ''); clearBag();
   return order;

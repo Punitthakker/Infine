@@ -1,8 +1,9 @@
 // Screen templates. Each view returns an HTML string; app.js wires behaviour.
-import { PRODUCTS, DROPS, CATEGORIES, LAUNCH, bySlug, fromPrice, dropOf, dropStatus, availability, earPartyFrom } from './data.js?v=202610181306';
-import { jewelSVG } from './jewel.js?v=202610181306';
-import { pixelDiamond, mascot, orbit, sparkle, ICON } from './brand.js?v=202610181306';
-import * as S from './store.js?v=202610181306';
+import { PRODUCTS, DROPS, CATEGORIES, LAUNCH, bySlug, fromPrice, dropOf, dropStatus, availability, earPartyFrom } from './data.js?v=202610201241';
+import { jewelSVG } from './jewel.js?v=202610201241';
+import { pixelDiamond, mascot, orbit, sparkle, ICON } from './brand.js?v=202610201241';
+import * as S from './store.js?v=202610201241';
+import { live } from './commerce.js?v=202610201241';
 
 export const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const aed = n => 'AED ' + Math.round(n).toLocaleString('en-US');
@@ -360,7 +361,16 @@ export function checkout(step = 1, f = {}) {
         <label class="radio"><input type="checkbox" name="gift" ${f.gift ? 'checked' : ''} style="accent-color:var(--lime)"><div><b>make it a gift</b><small>hide prices, add a handwritten note</small></div><span class="mono">free</span></label>
       </div><p class="err" aria-live="polite"></p>
       <div style="display:flex;gap:8px"><button class="btn btn--line btn--sm" type="button" data-act="co-back">back</button><button class="btn btn--lime" style="flex:1" type="submit">continue to payment</button></div></form>`;
-  if (step === 3) body = `<form class="panel" data-form="co" data-step="3" novalidate>
+  if (step === 3 && live()) body = `<form class="panel" data-form="co" data-step="3" novalidate>
+      <h2 class="d4">how are you paying?</h2>
+      <div style="display:grid;gap:8px">
+        <label class="radio"><input type="radio" name="pay" value="link"${(f.pay || 'link') === 'link' ? ' checked' : ''}><div><b>secure payment link</b><small>card or apple pay link on whatsapp within minutes</small></div><span class="tagpay">link</span></label>
+        <label class="radio"><input type="radio" name="pay" value="cod"${f.pay === 'cod' ? ' checked' : ''}><div><b>pay on delivery</b><small>card or cash when it arrives · uae only</small></div><span class="tagpay">cod</span></label>
+      </div>
+      <p class="mono small muted">your piece is reserved the moment you place the order.</p>
+      <p class="err" aria-live="polite"></p>
+      <div style="display:flex;gap:8px"><button class="btn btn--line btn--sm" type="button" data-act="co-back">back</button><button class="btn btn--pink" style="flex:1" type="submit">place order <span class="nt">${aed(t.total + ship)}</span></button></div></form>`;
+  else if (step === 3) body = `<form class="panel" data-form="co" data-step="3" novalidate>
       <h2 class="d4">how are you paying?</h2>
       <div style="display:grid;gap:8px">
         <label class="radio"><input type="radio" name="pay" value="apple"${(f.pay || 'card') === 'apple' ? ' checked' : ''}><div><b>apple pay</b><small>face id, done</small></div><span class="tagpay">pay</span></label>
