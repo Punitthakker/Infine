@@ -1,6 +1,6 @@
 // Client-side state: bag, wishlist, orders, drop alerts. localStorage when available,
 // in-memory otherwise (private windows, embedded previews). Real orders go through commerce.js (Medusa).
-import { bySlug, PROMOS } from './data.js?v=202610201241';
+import { bySlug, PROMOS } from './data.js?v=202610201411';
 
 const mem = {};
 const read = (k, d) => { try { const v = localStorage.getItem('infine:' + k); return v ? JSON.parse(v) : (mem[k] ?? d); } catch { return mem[k] ?? d; } };

@@ -1,8 +1,8 @@
 // Medusa connector. The site keeps its fast local bag for browsing; at checkout the bag
 // becomes a real Medusa cart and order. Live prices and stock flow back into the catalogue.
 // If config.js is blank, everything here is skipped and the site runs in demo mode.
-import { MEDUSA } from './config.js?v=202610201241';
-import { PRODUCTS } from './data.js?v=202610201241';
+import { MEDUSA } from './config.js?v=202610201411';
+import { PRODUCTS } from './data.js?v=202610201411';
 
 export const live = () => !!(MEDUSA.url && MEDUSA.publishableKey);
 

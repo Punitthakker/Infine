@@ -1,9 +1,9 @@
 // Screen templates. Each view returns an HTML string; app.js wires behaviour.
-import { PRODUCTS, DROPS, CATEGORIES, LAUNCH, bySlug, fromPrice, dropOf, dropStatus, availability, earPartyFrom } from './data.js?v=202610201241';
-import { jewelSVG } from './jewel.js?v=202610201241';
-import { pixelDiamond, mascot, orbit, sparkle, ICON } from './brand.js?v=202610201241';
-import * as S from './store.js?v=202610201241';
-import { live } from './commerce.js?v=202610201241';
+import { PRODUCTS, DROPS, CATEGORIES, LAUNCH, bySlug, fromPrice, dropOf, dropStatus, availability, earPartyFrom } from './data.js?v=202610201411';
+import { jewelSVG } from './jewel.js?v=202610201411';
+import { pixelDiamond, mascot, orbit, sparkle, ICON } from './brand.js?v=202610201411';
+import * as S from './store.js?v=202610201411';
+import { live } from './commerce.js?v=202610201411';
 
 export const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const aed = n => 'AED ' + Math.round(n).toLocaleString('en-US');
