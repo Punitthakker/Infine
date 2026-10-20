@@ -22,7 +22,7 @@
     "test:integration:modules": "TEST_TYPE=integration:modules NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
     "test:unit": "TEST_TYPE=unit NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit",
     "predeploy": "medusa db:migrate",
-    "start:prod": "cd .medusa/server && npm install --omit=dev && npm run predeploy && npx medusa exec ./src/scripts/seed-infine.js && (if [ -n \"$ADMIN_EMAIL\" ] && [ -n \"$ADMIN_PASSWORD\" ]; then npx medusa user -e \"$ADMIN_EMAIL\" -p \"$ADMIN_PASSWORD\" || echo 'admin user already exists'; fi) && npm run start"
+    "start:prod": "cd .medusa/server && npm install --omit=dev && npm run predeploy && npx medusa exec ./src/scripts/seed-infine.js && (if [ -n \"$ADMIN_EMAIL\" ] && [ -n \"$ADMIN_PASSWORD\" ]; then npx medusa user -e \"$ADMIN_EMAIL\" -p \"$ADMIN_PASSWORD\" || echo 'admin user already exists'; fi) && npx medusa exec ./src/scripts/print-key.js && npm run start"
   },
   "dependencies": {
     "@medusajs/admin-sdk": "2.21.2",
